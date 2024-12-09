@@ -1,7 +1,7 @@
 -- --------------------------------------------------------
--- Hôte:                         127.0.0.1
--- Version du serveur:           5.7.33 - MySQL Community Server (GPL)
--- SE du serveur:                Win64
+-- Host:                         127.0.0.1
+-- Server version:               5.7.33 - MySQL Community Server (GPL)
+-- Server OS:                    Win64
 -- HeidiSQL Version:             11.2.0.6213
 -- --------------------------------------------------------
 
@@ -12,23 +12,22 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
-
--- Listage de la structure de la base pour cinemadb
+-- Database structure listing for cinemadb
 CREATE DATABASE IF NOT EXISTS `cinemadb` /*!40100 DEFAULT CHARACTER SET latin1 */;
 USE `cinemadb`;
 
--- Listage de la structure de la table cinemadb. acteur
-CREATE TABLE IF NOT EXISTS `acteur` (
-  `id_acteur` int(11) NOT NULL AUTO_INCREMENT,
-  `id_personne` int(11) NOT NULL,
-  PRIMARY KEY (`id_acteur`),
-  KEY `id_personne` (`id_personne`),
-  CONSTRAINT `acteur_ibfk_1` FOREIGN KEY (`id_personne`) REFERENCES `personne` (`id_personne`)
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=latin1;
+-- Table structure for cinemadb.actor
+CREATE TABLE IF NOT EXISTS `actor` (
+  `id_actor` int(11) NOT NULL AUTO_INCREMENT,
+  `id_person` int(11) NOT NULL,
+  PRIMARY KEY (`id_actor`),
+  KEY `id_person` (`id_person`),
+  CONSTRAINT `actor_ibfk_1` FOREIGN KEY (`id_person`) REFERENCES `person` (`id_person`)
+) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=latin1;
 
--- Listage des données de la table cinemadb.acteur : ~24 rows (environ)
-/*!40000 ALTER TABLE `acteur` DISABLE KEYS */;
-INSERT INTO `acteur` (`id_acteur`, `id_personne`) VALUES
+-- Data listing for cinemadb.actor: ~40 rows
+/*!40000 ALTER TABLE `actor` DISABLE KEYS */;
+INSERT INTO `actor` (`id_actor`, `id_person`) VALUES
 	(1, 6),
 	(2, 7),
 	(3, 8),
@@ -52,25 +51,41 @@ INSERT INTO `acteur` (`id_acteur`, `id_personne`) VALUES
 	(21, 26),
 	(22, 27),
 	(23, 28),
-	(24, 29);
-/*!40000 ALTER TABLE `acteur` ENABLE KEYS */;
+	(24, 29),
+	(25, 33),
+	(26, 34),
+	(27, 35),
+	(28, 36),
+	(29, 39),
+	(30, 40),
+	(31, 41),
+	(32, 42),
+	(33, 47),
+	(34, 48),
+	(35, 50),
+	(36, 51),
+	(37, 52),
+	(38, 54),
+	(39, 56),
+	(40, 57);
+/*!40000 ALTER TABLE `actor` ENABLE KEYS */;
 
--- Listage de la structure de la table cinemadb. casting
+-- Table structure for cinemadb.casting
 CREATE TABLE IF NOT EXISTS `casting` (
   `id_film` int(11) NOT NULL,
-  `id_acteur` int(11) NOT NULL,
-  `id_personnage` int(11) NOT NULL,
-  PRIMARY KEY (`id_film`,`id_acteur`,`id_personnage`),
-  KEY `id_acteur` (`id_acteur`),
-  KEY `id_personnage` (`id_personnage`),
+  `id_actor` int(11) NOT NULL,
+  `id_character` int(11) NOT NULL,
+  PRIMARY KEY (`id_film`,`id_actor`,`id_character`),
+  KEY `id_actor` (`id_actor`),
+  KEY `id_character` (`id_character`),
   CONSTRAINT `casting_ibfk_1` FOREIGN KEY (`id_film`) REFERENCES `film` (`id_film`),
-  CONSTRAINT `casting_ibfk_2` FOREIGN KEY (`id_acteur`) REFERENCES `acteur` (`id_acteur`),
-  CONSTRAINT `casting_ibfk_3` FOREIGN KEY (`id_personnage`) REFERENCES `personnage` (`id_personnage`)
+  CONSTRAINT `casting_ibfk_2` FOREIGN KEY (`id_actor`) REFERENCES `actor` (`id_actor`),
+  CONSTRAINT `casting_ibfk_3` FOREIGN KEY (`id_character`) REFERENCES `character` (`id_character`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- Listage des données de la table cinemadb.casting : ~27 rows (environ)
+-- Data listing for cinemadb.casting: ~49 rows
 /*!40000 ALTER TABLE `casting` DISABLE KEYS */;
-INSERT INTO `casting` (`id_film`, `id_acteur`, `id_personnage`) VALUES
+INSERT INTO `casting` (`id_film`, `id_actor`, `id_character`) VALUES
 	(1, 1, 1),
 	(4, 1, 16),
 	(4, 2, 17),
@@ -97,64 +112,97 @@ INSERT INTO `casting` (`id_film`, `id_acteur`, `id_personnage`) VALUES
 	(6, 22, 25),
 	(6, 23, 26),
 	(2, 24, 11),
-	(6, 24, 27);
+	(6, 24, 27),
+	(7, 25, 28),
+	(7, 26, 29),
+	(9, 28, 32),
+	(10, 29, 34),
+	(11, 31, 36),
+	(11, 32, 37),
+	(12, 30, 38),
+	(12, 31, 39),
+	(13, 33, 40),
+	(13, 34, 41),
+	(14, 35, 42),
+	(14, 36, 43),
+	(15, 37, 44),
+	(16, 38, 45),
+	(17, 40, 46),
+	(18, 38, 47),
+	(18, 39, 48),
+	(19, 38, 49),
+	(20, 35, 50);
 /*!40000 ALTER TABLE `casting` ENABLE KEYS */;
 
--- Listage de la structure de la table cinemadb. film
+-- Table structure for cinemadb.film
 CREATE TABLE IF NOT EXISTS `film` (
   `id_film` int(11) NOT NULL AUTO_INCREMENT,
-  `titre` varchar(100) NOT NULL,
-  `date_sortie` date NOT NULL,
-  `duree` int(11) NOT NULL,
+  `title` varchar(100) NOT NULL,
+  `release_date` date NOT NULL,
+  `duration` int(11) NOT NULL,
   `synopsis` text,
-  `note` decimal(3,1) DEFAULT NULL,
-  `affiche` varchar(255) DEFAULT NULL,
-  `id_realisateur` int(11) NOT NULL,
+  `rating` decimal(3,1) DEFAULT NULL,
+  `poster` varchar(255) DEFAULT NULL,
+  `id_director` int(11) NOT NULL,
   PRIMARY KEY (`id_film`),
-  KEY `id_realisateur` (`id_realisateur`),
-  CONSTRAINT `film_ibfk_1` FOREIGN KEY (`id_realisateur`) REFERENCES `realisateur` (`id_realisateur`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+  KEY `id_director` (`id_director`),
+  CONSTRAINT `film_ibfk_1` FOREIGN KEY (`id_director`) REFERENCES `director` (`id_director`)
+) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=latin1;
 
--- Listage des données de la table cinemadb.film : ~6 rows (environ)
+-- Data listing for cinemadb.film: ~20 rows
 /*!40000 ALTER TABLE `film` DISABLE KEYS */;
-INSERT INTO `film` (`id_film`, `titre`, `date_sortie`, `duree`, `synopsis`, `note`, `affiche`, `id_realisateur`) VALUES
-	(1, 'Inception', '2010-07-16', 148, 'Dom Cobb est un voleur expérimenté dans l\'art périlleux de l\'extraction : sa spécialité consiste à s\'approprier les secrets les plus précieux d\'un individu, enfouis au plus profond de son subconscient, pendant qu\'il rêve et que son esprit est particulièrement vulnérable.', 8.8, 'inception.jpg', 1),
-	(2, 'The Dark Knight', '2008-07-18', 152, 'Batman entreprend de démanteler les dernières organisations criminelles de Gotham. Mais il se heurte bientôt à un nouveau génie du crime qui répand la terreur et le chaos dans la ville : le Joker.', 9.0, 'dark_knight.jpg', 1),
-	(3, 'Pulp Fiction', '1994-10-14', 154, 'L\'odyssée sanglante et burlesque de petits malfrats dans la jungle de Hollywood à travers trois histoires qui s\'entremêlent.', 8.9, 'pulp_fiction.jpg', 3),
-	(4, 'Titanic', '1997-12-19', 195, 'Southampton, 10 avril 1912. Le plus grand paquebot du monde, réputé pour son insubmersibilité, le Titanic, appareille pour son premier voyage. Quatre jours plus tard, il heurte un iceberg. À son bord, un artiste pauvre et une grande bourgeoise tombent amoureux.', 7.9, 'titanic.jpg', 4),
-	(5, 'The Godfather', '1972-03-24', 175, 'En 1945, à New York, les Corleone sont une des cinq familles de la mafia. Don Vito Corleone, parrain de cette famille, marie sa fille à un bookmaker. Sollozzo, parrain de la famille Tattaglia, propose à Don Vito une association dans le trafic de drogue.', 9.2, 'godfather.jpg', 5),
-	(6, 'Interstellar', '2014-11-07', 169, 'Dans un futur proche, la Terre est devenue hostile pour l\'homme. Les températures baissent, les récoltes disparaissent peu à peu. Cooper, un ancien pilote de la NASA devenu agriculteur, a deux enfants. Murphy, sa fille de dix ans, est persuadée que leur maison est hantée par un fantôme.', 8.6, 'interstellar.jpg', 1);
+INSERT INTO `film` (`id_film`, `title`, `release_date`, `duration`, `synopsis`, `rating`, `poster`, `id_director`) VALUES
+	(1, 'Inception', '2010-07-16', 148, 'Dom Cobb is a skilled thief, the absolute best in the dangerous art of extraction, stealing valuable secrets from deep within the subconscious during the dream state when the mind is at its most vulnerable.', 8.8, 'inception.jpg', 1),
+	(2, 'The Dark Knight', '2008-07-18', 152, 'Batman sets out to dismantle the remaining criminal organizations that plague Gotham. However, he soon finds himself prey to a reign of chaos unleashed by a rising criminal mastermind known to the terrified citizens of Gotham as the Joker.', 9.0, 'dark_knight.jpg', 1),
+	(3, 'Pulp Fiction', '1994-10-14', 154, 'The lives of two mob hitmen, a boxer, a gangster and his wife, and a pair of diner bandits intertwine in four tales of violence and redemption.', 8.9, 'pulp_fiction.jpg', 3),
+	(4, 'Titanic', '1997-12-19', 195, 'Southampton, April 10, 1912. The largest ship ever built, deemed unsinkable, the Titanic sets sail on its maiden voyage. Four days later, it hits an iceberg. On board, a poor artist and a high-society woman fall in love.', 7.9, 'titanic.jpg', 4),
+	(5, 'The Godfather', '1972-03-24', 175, 'In 1945 New York City, the Corleone crime family is one of the five families. Don Vito Corleone marries off his daughter to a bookmaker. Sollozzo, head of the Tattaglia family, proposes a drug business partnership to Don Vito.', 9.2, 'godfather.jpg', 5),
+	(6, 'Interstellar', '2014-11-07', 169, 'In a future where Earth has become hostile to human life, crops are failing, and mankind faces extinction. Cooper, a former NASA pilot turned farmer, must leave his family to join an expedition through a wormhole in search of a new home for humanity.', 8.6, 'interstellar.jpg', 1),
+	(7, 'Dune', '2021-09-15', 155, 'Paul Atreides, a brilliant and gifted young man born into a great destiny, must travel to the most dangerous planet in the universe to ensure the future of his family and his people.', 8.0, 'dune.jpg', 8),
+	(8, 'The Grand Budapest Hotel', '2014-03-06', 99, 'The adventures of Gustave H, a legendary concierge at a famous European hotel between the wars, and Zero Moustafa, the lobby boy who becomes his most trusted friend.', 8.1, 'grand_budapest.jpg', 9),
+	(9, 'Taxi Driver', '1976-02-08', 114, 'A mentally unstable veteran works as a nighttime taxi driver in New York City, where the perceived decadence and sleaze fuels his urge for violent action.', 8.3, 'taxi_driver.jpg', 7),
+	(10, 'Fight Club', '1999-10-15', 139, 'An insomniac office worker and a devil-may-care soap maker form an underground fight club that evolves into much more.', 8.8, 'fight_club.jpg', 10),
+	(11, 'La La Land', '2016-12-09', 128, 'While pursuing their dreams in Los Angeles, a jazz pianist and an aspiring actress fall in love while attempting to reconcile their aspirations for the future.', 8.0, 'la_la_land.jpg', 11),
+	(12, 'Barbie', '2023-07-21', 114, 'Barbie, who lives in Barbieland, is expelled from the land for not being a perfect-looking doll. She then ventures into the human world to find true happiness.', 7.0, 'barbie.jpg', 12),
+	(13, 'Raiders of the Lost Ark', '1981-06-12', 115, 'Archaeologist and adventurer Indiana Jones is hired by the U.S. government to find the Ark of the Covenant before the Nazis can obtain its awesome powers.', 8.4, 'raiders.jpg', 13),
+	(14, 'A Star Is Born', '2018-10-05', 136, 'A seasoned musician discovers and falls in love with a struggling artist. As her career takes off, his personal issues and alcoholism begin to overshadow their relationship.', 7.6, 'star_is_born.jpg', 1),
+	(15, 'The Whale', '2022-12-09', 117, 'A reclusive, morbidly obese English teacher attempts to reconnect with his estranged teenage daughter for one last chance at redemption.', 7.7, 'whale.jpg', 14),
+	(16, 'Top Gun: Maverick', '2022-05-27', 130, 'After more than thirty years of service as a top naval aviator, Pete "Maverick" Mitchell is where he belongs, pushing the envelope as a courageous test pilot.', 8.3, 'top_gun_maverick.jpg', 15),
+	(17, 'Everything Everywhere All at Once', '2022-03-25', 139, 'A Chinese immigrant gets unwittingly embroiled in an epic adventure where she must connect different versions of herself in the parallel universe to stop someone who intends to harm the multiverse.', 7.9, 'everything.jpg', 16),
+	(18, 'Edge of Tomorrow', '2014-06-06', 113, 'A military officer is brought into an alien war against an extraterrestrial enemy who can reset the day and know the future. When he is enabled with the same power, he teams up with a Special Forces warrior to try and end the war.', 7.9, 'edge_of_tomorrow.jpg', 15),
+	(19, 'Ready Player One', '2018-03-29', 140, 'In 2045, the world is on the brink of chaos and collapse. People find salvation in the OASIS, an expansive virtual reality universe created by James Halliday.', 7.4, 'ready_player_one.jpg', 13),
+	(20, 'The Fabelmans', '2022-11-23', 151, 'Growing up in post-World War II era Arizona, young Sammy Fabelman aspires to become a filmmaker as he reaches adolescence, but he discovers a shattering family secret that will alter the course of his life forever.', 7.6, 'fabelmans.jpg', 13);
 /*!40000 ALTER TABLE `film` ENABLE KEYS */;
 
--- Listage de la structure de la table cinemadb. genre
+-- Table structure for cinemadb.genre
 CREATE TABLE IF NOT EXISTS `genre` (
   `id_genre` int(11) NOT NULL AUTO_INCREMENT,
-  `nom_genre` varchar(50) NOT NULL,
+  `genre_name` varchar(50) NOT NULL,
   PRIMARY KEY (`id_genre`),
-  UNIQUE KEY `nom_genre` (`nom_genre`)
+  UNIQUE KEY `genre_name` (`genre_name`)
 ) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=latin1;
 
--- Listage des données de la table cinemadb.genre : ~15 rows (environ)
+-- Data listing for cinemadb.genre: ~15 rows
 /*!40000 ALTER TABLE `genre` DISABLE KEYS */;
-INSERT INTO `genre` (`id_genre`, `nom_genre`) VALUES
+INSERT INTO `genre` (`id_genre`, `genre_name`) VALUES
 	(1, 'Action'),
 	(8, 'Animation'),
-	(6, 'Aventure'),
-	(3, 'Comédie'),
-	(4, 'Drame'),
-	(5, 'Fantastique'),
-	(14, 'Guerre'),
-	(12, 'Historique'),
-	(10, 'Horreur'),
+	(6, 'Adventure'),
+	(3, 'Comedy'),
+	(4, 'Drama'),
+	(5, 'Fantasy'),
+	(14, 'War'),
+	(12, 'Historical'),
+	(10, 'Horror'),
 	(15, 'Musical'),
-	(11, 'Policier'),
+	(11, 'Crime'),
 	(9, 'Romance'),
-	(2, 'Science-Fiction'),
+	(2, 'Science Fiction'),
 	(7, 'Thriller'),
 	(13, 'Western');
 /*!40000 ALTER TABLE `genre` ENABLE KEYS */;
 
--- Listage de la structure de la table cinemadb. genre_film
+-- Table structure for cinemadb.genre_film
 CREATE TABLE IF NOT EXISTS `genre_film` (
   `id_film` int(11) NOT NULL,
   `id_genre` int(11) NOT NULL,
@@ -164,7 +212,7 @@ CREATE TABLE IF NOT EXISTS `genre_film` (
   CONSTRAINT `genre_film_ibfk_2` FOREIGN KEY (`id_genre`) REFERENCES `genre` (`id_genre`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- Listage des données de la table cinemadb.genre_film : ~17 rows (environ)
+-- Data listing for cinemadb.genre_film: ~47 rows
 /*!40000 ALTER TABLE `genre_film` DISABLE KEYS */;
 INSERT INTO `genre_film` (`id_film`, `id_genre`) VALUES
 	(1, 1),
@@ -183,20 +231,54 @@ INSERT INTO `genre_film` (`id_film`, `id_genre`) VALUES
 	(2, 11),
 	(3, 11),
 	(5, 11),
-	(4, 12);
+	(4, 12),
+	(7, 1),
+	(7, 2),
+	(7, 6),
+	(8, 3),
+	(8, 6),
+	(9, 4),
+	(9, 7),
+	(10, 4),
+	(10, 7),
+	(11, 4),
+	(11, 9),
+	(11, 15),
+	(12, 3),
+	(12, 6),
+	(12, 5),
+	(13, 1),
+	(13, 6),
+	(14, 4),
+	(14, 9),
+	(14, 15),
+	(15, 4),
+	(16, 1),
+	(16, 4),
+	(17, 1),
+	(17, 3),
+	(17, 2),
+	(18, 1),
+	(18, 2),
+	(18, 6),
+	(19, 1),
+	(19, 2),
+	(19, 6),
+	(20, 4),
+	(20, 12);
 /*!40000 ALTER TABLE `genre_film` ENABLE KEYS */;
 
--- Listage de la structure de la table cinemadb. personnage
-CREATE TABLE IF NOT EXISTS `personnage` (
-  `id_personnage` int(11) NOT NULL AUTO_INCREMENT,
-  `nom_personnage` varchar(50) NOT NULL,
-  PRIMARY KEY (`id_personnage`),
-  UNIQUE KEY `nom_personnage` (`nom_personnage`)
-) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=latin1;
+-- Table structure for cinemadb.character
+CREATE TABLE IF NOT EXISTS `character` (
+  `id_character` int(11) NOT NULL AUTO_INCREMENT,
+  `character_name` varchar(50) NOT NULL,
+  PRIMARY KEY (`id_character`),
+  UNIQUE KEY `character_name` (`character_name`)
+) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=latin1;
 
--- Listage des données de la table cinemadb.personnage : ~27 rows (environ)
-/*!40000 ALTER TABLE `personnage` DISABLE KEYS */;
-INSERT INTO `personnage` (`id_personnage`, `nom_personnage`) VALUES
+-- Data listing for cinemadb.character: ~50 rows
+/*!40000 ALTER TABLE `character` DISABLE KEYS */;
+INSERT INTO `character` (`id_character`, `character_name`) VALUES
 	(11, 'Alfred Pennyworth'),
 	(4, 'Ariadne'),
 	(3, 'Arthur'),
@@ -212,7 +294,7 @@ INSERT INTO `personnage` (`id_personnage`, `nom_personnage`) VALUES
 	(23, 'Joseph Cooper'),
 	(13, 'Jules Winnfield'),
 	(22, 'Kay Adams'),
-	(9, 'Le Joker'),
+	(9, 'The Joker'),
 	(2, 'Mal Cobb'),
 	(14, 'Mia Wallace'),
 	(19, 'Michael Corleone'),
@@ -223,122 +305,181 @@ INSERT INTO `personnage` (`id_personnage`, `nom_personnage`) VALUES
 	(7, 'Saito'),
 	(21, 'Sonny Corleone'),
 	(12, 'Vincent Vega'),
-	(20, 'Vito Corleone');
-/*!40000 ALTER TABLE `personnage` ENABLE KEYS */;
+	(20, 'Vito Corleone'),
+	(28, 'Paul Atreides'),
+	(29, 'Chani'),
+	(30, 'M. Gustave'),
+	(31, 'Zero Moustafa'),
+	(32, 'Travis Bickle'),
+	(33, 'Betsy'),
+	(34, 'Tyler Durden'),
+	(35, 'The Narrator'),
+	(36, 'Sebastian'),
+	(37, 'Mia'),
+	(38, 'Barbie'),
+	(39, 'Ken'),
+	(40, 'Indiana Jones'),
+	(41, 'Marion Ravenwood'),
+	(42, 'Jackson Maine'),
+	(43, 'Ally'),
+	(44, 'Charlie'),
+	(45, 'Pete Mitchell'),
+	(46, 'Evelyn Wang'),
+	(47, 'William Cage'),
+	(48, 'Rita Vrataski'),
+	(49, 'Wade Watts'),
+	(50, 'Sammy Fabelman');
+/*!40000 ALTER TABLE `character` ENABLE KEYS */;
 
--- Listage de la structure de la table cinemadb. personne
-CREATE TABLE IF NOT EXISTS `personne` (
-  `id_personne` int(11) NOT NULL AUTO_INCREMENT,
-  `nom` varchar(50) NOT NULL,
-  `prenom` varchar(50) NOT NULL,
-  `sexe` varchar(50) NOT NULL,
-  `dateNaissance` date NOT NULL,
-  PRIMARY KEY (`id_personne`)
-) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=latin1;
+-- Table structure for cinemadb.person
+CREATE TABLE IF NOT EXISTS `person` (
+  `id_person` int(11) NOT NULL AUTO_INCREMENT,
+  `last_name` varchar(50) NOT NULL,
+  `first_name` varchar(50) NOT NULL,
+  `sex` varchar(50) NOT NULL,
+  `birth_date` date NOT NULL,
+  PRIMARY KEY (`id_person`)
+) ENGINE=InnoDB AUTO_INCREMENT=60 DEFAULT CHARSET=latin1;
 
--- Listage des données de la table cinemadb.personne : ~29 rows (environ)
-/*!40000 ALTER TABLE `personne` DISABLE KEYS */;
-INSERT INTO `personne` (`id_personne`, `nom`, `prenom`, `sexe`, `dateNaissance`) VALUES
-	(1, 'Nolan', 'Christopher', 'Homme', '1970-07-30'),
-	(2, 'Spielberg', 'Steven', 'Homme', '1946-12-18'),
-	(3, 'Tarantino', 'Quentin', 'Homme', '1963-03-27'),
-	(4, 'Cameron', 'James', 'Homme', '1954-08-16'),
-	(5, 'Coppola', 'Francis Ford', 'Homme', '1939-04-07'),
-	(6, 'DiCaprio', 'Leonardo', 'Homme', '1974-11-11'),
-	(7, 'Winslet', 'Kate', 'Femme', '1975-10-05'),
-	(8, 'Bale', 'Christian', 'Homme', '1974-01-30'),
-	(9, 'Ledger', 'Heath', 'Homme', '1979-04-04'),
-	(10, 'Murphy', 'Cillian', 'Homme', '1976-05-25'),
-	(11, 'Cotillard', 'Marion', 'Femme', '1975-09-30'),
-	(12, 'Gordon-Levitt', 'Joseph', 'Homme', '1981-02-17'),
-	(13, 'Page', 'Ellen', 'Femme', '1987-02-21'),
-	(14, 'Hardy', 'Tom', 'Homme', '1977-09-15'),
-	(15, 'Watanabe', 'Ken', 'Homme', '1959-10-21'),
-	(16, 'Travolta', 'John', 'Homme', '1954-02-18'),
-	(17, 'Jackson', 'Samuel L.', 'Homme', '1948-12-21'),
-	(18, 'Thurman', 'Uma', 'Femme', '1970-04-29'),
-	(19, 'Willis', 'Bruce', 'Homme', '1955-03-19'),
-	(20, 'Zane', 'Billy', 'Homme', '1966-02-24'),
-	(21, 'Pacino', 'Al', 'Homme', '1940-04-25'),
-	(22, 'Brando', 'Marlon', 'Homme', '1924-04-03'),
-	(23, 'Caan', 'James', 'Homme', '1940-03-26'),
-	(24, 'Keaton', 'Diane', 'Femme', '1946-01-05'),
-	(25, 'McConaughey', 'Matthew', 'Homme', '1969-11-04'),
-	(26, 'Hathaway', 'Anne', 'Femme', '1982-11-12'),
-	(27, 'Damon', 'Matt', 'Homme', '1970-10-08'),
-	(28, 'Chastain', 'Jessica', 'Femme', '1977-03-24'),
-	(29, 'Caine', 'Michael', 'Homme', '1933-03-14');
-/*!40000 ALTER TABLE `personne` ENABLE KEYS */;
+-- Data listing for cinemadb.person: ~59 rows
+/*!40000 ALTER TABLE `person` DISABLE KEYS */;
+INSERT INTO `person` (`id_person`, `last_name`, `first_name`, `sex`, `birth_date`) VALUES
+	(1, 'Nolan', 'Christopher', 'Male', '1970-07-30'),
+	(2, 'Spielberg', 'Steven', 'Male', '1946-12-18'),
+	(3, 'Tarantino', 'Quentin', 'Male', '1963-03-27'),
+	(4, 'Cameron', 'James', 'Male', '1954-08-16'),
+	(5, 'Coppola', 'Francis Ford', 'Male', '1939-04-07'),
+	(6, 'DiCaprio', 'Leonardo', 'Male', '1974-11-11'),
+	(7, 'Winslet', 'Kate', 'Female', '1975-10-05'),
+	(8, 'Bale', 'Christian', 'Male', '1974-01-30'),
+	(9, 'Ledger', 'Heath', 'Male', '1979-04-04'),
+	(10, 'Murphy', 'Cillian', 'Male', '1976-05-25'),
+	(11, 'Cotillard', 'Marion', 'Female', '1975-09-30'),
+	(12, 'Gordon-Levitt', 'Joseph', 'Male', '1981-02-17'),
+	(13, 'Page', 'Ellen', 'Female', '1987-02-21'),
+	(14, 'Hardy', 'Tom', 'Male', '1977-09-15'),
+	(15, 'Watanabe', 'Ken', 'Male', '1959-10-21'),
+	(16, 'Travolta', 'John', 'Male', '1954-02-18'),
+	(17, 'Jackson', 'Samuel L.', 'Male', '1948-12-21'),
+	(18, 'Thurman', 'Uma', 'Female', '1970-04-29'),
+	(19, 'Willis', 'Bruce', 'Male', '1955-03-19'),
+	(20, 'Zane', 'Billy', 'Male', '1966-02-24'),
+	(21, 'Pacino', 'Al', 'Male', '1940-04-25'),
+	(22, 'Brando', 'Marlon', 'Male', '1924-04-03'),
+	(23, 'Caan', 'James', 'Male', '1940-03-26'),
+	(24, 'Keaton', 'Diane', 'Female', '1946-01-05'),
+	(25, 'McConaughey', 'Matthew', 'Male', '1969-11-04'),
+	(26, 'Hathaway', 'Anne', 'Female', '1982-11-12'),
+	(27, 'Damon', 'Matt', 'Male', '1970-10-08'),
+	(28, 'Chastain', 'Jessica', 'Female', '1977-03-24'),
+	(29, 'Caine', 'Michael', 'Male', '1933-03-14'),
+	(30, 'Scorsese', 'Martin', 'Male', '1942-11-17'),
+	(31, 'Villeneuve', 'Denis', 'Male', '1967-10-03'),
+	(32, 'Anderson', 'Wes', 'Male', '1969-05-01'),
+	(33, 'Chalamet', 'Timothée', 'Male', '1995-12-27'),
+	(34, 'Zendaya', 'Coleman', 'Female', '1996-09-01'),
+	(35, 'Phoenix', 'Joaquin', 'Male', '1974-10-28'),
+	(36, 'De Niro', 'Robert', 'Male', '1943-08-17'),
+	(37, 'Hanks', 'Tom', 'Male', '1956-07-09'),
+	(38, 'Portman', 'Natalie', 'Female', '1981-06-09'),
+	(39, 'Pitt', 'Brad', 'Male', '1963-12-18'),
+	(40, 'Robbie', 'Margot', 'Female', '1990-07-02'),
+	(41, 'Gosling', 'Ryan', 'Male', '1980-11-12'),
+	(42, 'Stone', 'Emma', 'Female', '1988-11-06'),
+	(43, 'Fincher', 'David', 'Male', '1962-08-28'),
+	(44, 'Chazelle', 'Damien', 'Male', '1985-01-19'),
+	(45, 'Gerwig', 'Greta', 'Female', '1983-08-04'),
+	(46, 'Spielberg', 'Steven', 'Male', '1946-12-18'),
+	(47, 'Ford', 'Harrison', 'Male', '1942-07-13'),
+	(48, 'Allen', 'Karen', 'Female', '1951-10-05'),
+	(49, 'Roberts', 'Julia', 'Female', '1967-10-28'),
+	(50, 'Cooper', 'Bradley', 'Male', '1975-01-05'),
+	(51, 'Gaga', 'Lady', 'Female', '1986-03-28'),
+	(52, 'Fraser', 'Brendan', 'Male', '1968-12-03'),
+	(53, 'Aronofsky', 'Darren', 'Male', '1969-02-12'),
+	(54, 'Cruise', 'Tom', 'Male', '1962-07-03'),
+	(55, 'Kosinski', 'Joseph', 'Male', '1974-05-03'),
+	(56, 'Blunt', 'Emily', 'Female', '1983-02-23'),
+	(57, 'Yeoh', 'Michelle', 'Female', '1962-08-06'),
+	(58, 'Kwan', 'Daniel', 'Male', '1988-02-10'),
+	(59, 'Scheinert', 'Daniel', 'Male', '1987-06-07');
+/*!40000 ALTER TABLE `person` ENABLE KEYS */;
 
--- Listage de la structure de la table cinemadb. realisateur
-CREATE TABLE IF NOT EXISTS `realisateur` (
-  `id_realisateur` int(11) NOT NULL AUTO_INCREMENT,
-  `id_personne` int(11) NOT NULL,
-  PRIMARY KEY (`id_realisateur`),
-  KEY `id_personne` (`id_personne`),
-  CONSTRAINT `realisateur_ibfk_1` FOREIGN KEY (`id_personne`) REFERENCES `personne` (`id_personne`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+-- Table structure for cinemadb.director
+CREATE TABLE IF NOT EXISTS `director` (
+  `id_director` int(11) NOT NULL AUTO_INCREMENT,
+  `id_person` int(11) NOT NULL,
+  PRIMARY KEY (`id_director`),
+  KEY `id_person` (`id_person`),
+  CONSTRAINT `director_ibfk_1` FOREIGN KEY (`id_person`) REFERENCES `person` (`id_person`)
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
 
--- Listage des données de la table cinemadb.realisateur : ~5 rows (environ)
-/*!40000 ALTER TABLE `realisateur` DISABLE KEYS */;
-INSERT INTO `realisateur` (`id_realisateur`, `id_personne`) VALUES
+-- Data listing for cinemadb.director: ~17 rows
+/*!40000 ALTER TABLE `director` DISABLE KEYS */;
+INSERT INTO `director` (`id_director`, `id_person`) VALUES
 	(1, 1),
 	(2, 2),
 	(3, 3),
 	(4, 4),
 	(5, 5),
-	(6, 6);
-/*!40000 ALTER TABLE `realisateur` ENABLE KEYS */;
+	(6, 6),
+	(7, 30),
+	(8, 31),
+	(9, 32),
+	(10, 43),
+	(11, 44),
+	(12, 45),
+	(13, 46),
+	(14, 53),
+	(15, 55),
+	(16, 58),
+	(17, 59);
+/*!40000 ALTER TABLE `director` ENABLE KEYS */;
 
--- Listage de la structure de la vue cinemadb. v_casting_complet
--- Création d'une table temporaire pour palier aux erreurs de dépendances de VIEW
-CREATE TABLE `v_casting_complet` (
-	`titre` VARCHAR(100) NOT NULL COLLATE 'latin1_swedish_ci',
-	`acteur` VARCHAR(101) NOT NULL COLLATE 'latin1_swedish_ci',
-	`role` VARCHAR(50) NOT NULL COLLATE 'latin1_swedish_ci'
+-- View structure for view cinemadb.v_complete_casting
+CREATE TABLE IF NOT EXISTS `v_casting_complet` (
+  `title` VARCHAR(100) NOT NULL,
+  `actor` VARCHAR(101) NOT NULL,
+  `role` VARCHAR(50) NOT NULL
 ) ENGINE=MyISAM;
 
--- Listage de la structure de la vue cinemadb. v_film_complet
--- Création d'une table temporaire pour palier aux erreurs de dépendances de VIEW
-CREATE TABLE `v_film_complet` (
-	`titre` VARCHAR(100) NOT NULL COLLATE 'latin1_swedish_ci',
-	`date_sortie` DATE NOT NULL,
-	`duree` INT(11) NOT NULL,
-	`note` DECIMAL(3,1) NULL,
-	`realisateur` VARCHAR(101) NOT NULL COLLATE 'latin1_swedish_ci',
-	`genres` TEXT NULL COLLATE 'latin1_swedish_ci'
+-- View structure for view cinemadb.v_complete_film
+CREATE TABLE IF NOT EXISTS `v_film_complet` (
+  `title` VARCHAR(100) NOT NULL,
+  `release_date` DATE NOT NULL,
+  `duration` INT(11) NOT NULL,
+  `rating` DECIMAL(3,1) NULL,
+  `director` VARCHAR(101) NOT NULL,
+  `genres` TEXT NULL
 ) ENGINE=MyISAM;
 
--- Listage de la structure de la vue cinemadb. v_casting_complet
--- Suppression de la table temporaire et création finale de la structure d'une vue
+-- View structure for view cinemadb.v_complete_casting
 DROP TABLE IF EXISTS `v_casting_complet`;
 CREATE ALGORITHM=UNDEFINED SQL SECURITY DEFINER VIEW `v_casting_complet` AS SELECT 
-    f.titre,
-    CONCAT(p.prenom, ' ', p.nom) as acteur,
-    pe.nom_personnage as role
+    f.title,
+    CONCAT(p.first_name, ' ', p.last_name) as actor,
+    c.character_name as role
 FROM FILM f
-JOIN CASTING c ON f.id_film = c.id_film
-JOIN ACTEUR a ON c.id_acteur = a.id_acteur
-JOIN PERSONNE p ON a.id_personne = p.id_personne
-JOIN PERSONNAGE pe ON c.id_personnage = pe.id_personnage
-ORDER BY f.titre, p.nom ;
+JOIN CASTING cs ON f.id_film = cs.id_film
+JOIN ACTOR a ON cs.id_actor = a.id_actor
+JOIN PERSON p ON a.id_person = p.id_person
+JOIN CHARACTER c ON cs.id_character = c.id_character;
 
--- Listage de la structure de la vue cinemadb. v_film_complet
--- Suppression de la table temporaire et création finale de la structure d'une vue
+-- View structure for view cinemadb.v_complete_film
 DROP TABLE IF EXISTS `v_film_complet`;
 CREATE ALGORITHM=UNDEFINED SQL SECURITY DEFINER VIEW `v_film_complet` AS SELECT 
-    f.titre,
-    f.date_sortie,
-    f.duree,
-    f.note,
-    CONCAT(p.prenom, ' ', p.nom) as realisateur,
-    GROUP_CONCAT(DISTINCT g.nom_genre SEPARATOR ', ') as genres
+    f.title,
+    f.release_date,
+    f.duration,
+    f.rating,
+    CONCAT(p.first_name, ' ', p.last_name) as director,
+    GROUP_CONCAT(DISTINCT g.genre_name SEPARATOR ', ') as genres
 FROM FILM f
-JOIN REALISATEUR r ON f.id_realisateur = r.id_realisateur
-JOIN PERSONNE p ON r.id_personne = p.id_personne
+JOIN DIRECTOR d ON f.id_director = d.id_director
+JOIN PERSON p ON d.id_person = p.id_person
 LEFT JOIN GENRE_FILM gf ON f.id_film = gf.id_film
 LEFT JOIN GENRE g ON gf.id_genre = g.id_genre
-GROUP BY f.id_film, f.date_sortie, f.duree, f.note, realisateur ;
+GROUP BY f.id_film;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
 /*!40014 SET FOREIGN_KEY_CHECKS=IFNULL(@OLD_FOREIGN_KEY_CHECKS, 1) */;
