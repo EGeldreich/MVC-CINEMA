@@ -1,6 +1,6 @@
 <?php
 
-namespace Model\Manager;
+namespace Model\Manager\FilmManager;
 use Model\Connect;
 
 class FilmManager {

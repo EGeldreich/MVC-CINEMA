@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <link rel="stylesheet" href="../Public/css/style.css">
+    <link rel="stylesheet" href="././Public/css/style.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,19 +15,19 @@
 </head>
 <body>
     <header>
-        <nav class="navbar flex-row">
+        <nav class="navbar flex-row raleway">
             <div class="navbar_left flex-row">
-                <a href="index.php">The Movie <span class="main-color">Hub</span></a>
-                <div class="navbar_left-main">
-                    <a href="FilmList.php">Movies</a>
-                    <a href="GenreList.php">Genres</a>
-                    <a href="ActorList.php">Actors</a>
-                    <a href="DirectorList.php">Directors</a>
+                <a href="index.php" class="logo oswald">The Movie <span class="main-color">Hub</span></a>
+                <div class="navbar_left_main flex-row">
+                    <a href="index.php?action=FilmList">Movies</a>
+                    <a href="index.php?action=GenreList">Genres</a>
+                    <a href="index.php?action=ActorList">Actors</a>
+                    <a href="index.php?action=DirectorList">Directors</a>
                 </div>
             </div>
-            <div class="navbar_right">
+            <div class="navbar_right flex-row">
                 <i class="fa-solid fa-magnifying-glass"></i>
-                <a href="LoginForm.php">My Account</a>
+                <a href="LoginForm.php">My account</a>
             </div>
         </nav>
     </header>

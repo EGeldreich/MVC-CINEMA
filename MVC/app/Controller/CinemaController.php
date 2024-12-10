@@ -1,6 +1,6 @@
 <?php
 
-namespace Controller;
+namespace app\Controller;
 use Model\Connect;
 use Model\Manager\FilmManager;
 use Model\Manager\PersonManager;

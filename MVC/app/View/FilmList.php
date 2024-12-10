@@ -1,6 +1,6 @@
 <?php ob_start(); ?>
 
-<p> Il y a <?php $request->rowCount() ?> films</p>
+<!-- <p> Il y a films</p> -->
 
 <table>
     <thead>
@@ -11,7 +11,7 @@
     </thead>
     <tbody>
         <?php
-            foreach($request->fetchAll() as $film) {
+            foreach($films as $film) {
                 "<tr>
                     <td>".$film['title']."</td>
                     <td>".$film['release_date']."</td>
@@ -22,8 +22,10 @@
 </table>
 
 <?php
+
     $title = "All movies";
     $secondary_title = "All movies";
     $content = ob_get_clean();
     require "view/template.php";
+    
 ?>

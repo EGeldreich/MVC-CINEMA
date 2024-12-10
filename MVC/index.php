@@ -1,12 +1,14 @@
 <?php
 
-use Controller\CinemaController;
+use app\Controller\CinemaController;
 
 spl_autoload_register(function($class_name) {
     include $class_name.'.php';
 });
 
 $ctrlCinema = new CinemaController();
+
+$id = (isset($_GET["id"])) ? $_GET["id"] : NULL;
 
 if(isset($_GET["action"])){
     switch ($_GET["action"]) {
@@ -18,6 +20,7 @@ if(isset($_GET["action"])){
         case "Director" : $ctrlCinema->directorDetails(); break;
         case "RoleList" : $ctrlCinema->roleList(); break;
         case "Role" : $ctrlCinema->roleDetails(); break;
-
     };
 };
+
+require_once "app/View/Template.php";
