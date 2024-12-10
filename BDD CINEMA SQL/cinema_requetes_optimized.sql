@@ -1,7 +1,8 @@
 -- LISTS
     -- FILM
     SELECT title, release_date, rating
-    FROM film;
+    FROM film
+    ORDER BY rating;
 
     -- ACTOR
     SELECT CONCAT(p.first_name, ' ', p.last_name) AS actor
@@ -17,6 +18,14 @@
     SELECT movie_character_name
     FROM movie_character;
 
+    -- GENRES
+    SELECT 
+        g.genre_name,
+        COUNT(gf.id_film) AS number_of_films
+    FROM genre g
+        INNER JOIN genre_film gf ON g.id_genre = gf.id_genre
+    GROUP BY g.id_genre, g.genre_name
+    ORDER BY number_of_films DESC;
 -- DETAILS
     -- FILM
         -- GENERAL
@@ -40,6 +49,12 @@
             INNER JOIN actor a ON c.id_actor = a.id_actor
             INNER JOIN movie_character mc ON c.id_movie_character = mc.id_movie_character
             INNER JOIN person p ON a.id_person = p.id_person
+        WHERE f.id_film = :id;
+        -- GENRES
+        SELECT g.genre_name
+        FROM genre g
+            INNER JOIN genre_film gf ON g.id_genre = gf.id_genre
+            INNER JOIN film f ON gf.id_film = f.id_film
         WHERE f.id_film = :id;
 
     --PERSON

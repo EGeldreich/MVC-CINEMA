@@ -6,10 +6,10 @@ use Model\Connect;
 class FilmManager {
     public function getFilms(){
         $pdo = Connect::seConnecter();
-        var_dump($pdo);die;
         $request = $pdo->query("
-            SELECT title, release_date, rating
-            FROM film;
+            SELECT id_film, title, release_date, rating
+            FROM film
+            ORDER BY rating DESC;
         ");
         $films = $request->fetchAll();
         return $films;
@@ -51,5 +51,19 @@ class FilmManager {
         $request->execute(["id" -> $id]);
         $castings = $request->fetchAll();
         return $castings;
+    }
+
+    public function getGenres(){
+        $pdo = Connect::seConnecter();
+        $request = $pdo->prepare("
+            SELECT g.genre_name
+            FROM genre g
+                INNER JOIN genre_film gf ON g.id_genre = gf.id_genre
+                INNER JOIN film f ON gf.id_film = f.id_film
+            WHERE f.id_film = :id;
+        ");
+        $request->execute(["id" -> $id]);
+        $genres = $request->fetchAll();
+        return $genres;
     }
 }

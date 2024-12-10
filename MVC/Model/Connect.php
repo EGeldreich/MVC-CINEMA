@@ -5,7 +5,7 @@ abstract class Connect {
     const HOST = "localhost:8889"; // Port par défaut de MAMP
     const DB = "cinemadb";
     const USER = "root";
-    const PASS = "";
+    const PASS = "root";
 
     public static function seConnecter() {
         try {
@@ -14,7 +14,6 @@ abstract class Connect {
                 self::USER,
                 self::PASS
             );
-
             return $pdo;
         } catch (\PDOException $ex) {
             // Lever une exception en cas d'erreur

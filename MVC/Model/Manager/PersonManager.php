@@ -9,7 +9,8 @@ class PersonManager {
         $request = $pdo->query("
             SELECT CONCAT(p.first_name, ' ', p.last_name) AS director
             FROM person p
-            INNER JOIN director d ON p.id_person = d.id_person;
+            INNER JOIN director d ON p.id_person = d.id_person
+            ORDER BY p.last_name;
         ");
         $directors = $request->fetchAll();
         return $directors;
@@ -19,7 +20,8 @@ class PersonManager {
         $request = $pdo->query("
             SELECT CONCAT(p.first_name, ' ', p.last_name) AS actor
             FROM person p
-            INNER JOIN actor a ON p.id_person = a.id_person;
+            INNER JOIN actor a ON p.id_person = a.id_person
+            ORDER BY p.last_name;
         ");
         $actors = $request->fetchAll();
         return $actors;
