@@ -1,11 +1,12 @@
 <?php
 
-namespace Model\Manager\FilmManager;
+namespace Model\Manager;
 use Model\Connect;
 
 class FilmManager {
     public function getFilms(){
         $pdo = Connect::seConnecter();
+        var_dump($pdo);die;
         $request = $pdo->query("
             SELECT title, release_date, rating
             FROM film;

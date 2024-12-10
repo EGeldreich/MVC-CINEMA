@@ -1,9 +1,18 @@
 <?php
 
-use app\Controller\CinemaController;
+use Controller\CinemaController;
 
 spl_autoload_register(function($class_name) {
-    include $class_name.'.php';
+    // Convert namespace separators to directory separators
+    $file = str_replace('\\', DIRECTORY_SEPARATOR, $class_name) . '.php';
+    // Set the base directory for class files
+    $base_dir = __DIR__ . DIRECTORY_SEPARATOR;
+    // Create the full path
+    $file_path = $base_dir . $file;
+    
+    if (file_exists($file_path)) {
+        require_once $file_path;
+    }
 });
 
 $ctrlCinema = new CinemaController();
@@ -22,5 +31,3 @@ if(isset($_GET["action"])){
         case "Role" : $ctrlCinema->roleDetails(); break;
     };
 };
-
-require_once "app/View/Template.php";

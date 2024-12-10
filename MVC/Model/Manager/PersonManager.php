@@ -1,6 +1,6 @@
 <?php
 
-namespace Model\Manager\PersonManager;
+namespace Model\Manager;
 use Model\Connect;
 
 class PersonManager {

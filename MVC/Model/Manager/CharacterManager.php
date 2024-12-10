@@ -1,6 +1,6 @@
 <?php
 
-namespace Model\Manager\CharacterManager;
+namespace Model\Manager;
 use Model\Connect;
 
 class CharacterManager {

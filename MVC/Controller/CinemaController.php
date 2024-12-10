@@ -1,12 +1,12 @@
 <?php
 
-namespace app\Controller;
+namespace Controller;
 use Model\Connect;
 use Model\Manager\FilmManager;
 use Model\Manager\PersonManager;
 use Model\Manager\CharacterManager;
 
-class cinemaController {
+class CinemaController {
     // ----- LISTS -----
     // FILM LIST
     public function filmList() {
