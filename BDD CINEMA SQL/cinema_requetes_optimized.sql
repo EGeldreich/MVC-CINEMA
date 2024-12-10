@@ -1,122 +1,235 @@
+-- LISTS
+    -- FILM
+    SELECT title, release_date, rating
+    FROM film;
+
+    -- ACTOR
+    SELECT CONCAT(p.first_name, ' ', p.last_name) AS actor
+    FROM person p
+    INNER JOIN actor a ON p.id_person = a.id_person;
+
+    -- DIRECTOR
+    SELECT CONCAT(p.first_name, ' ', p.last_name) AS director
+    FROM person p
+    INNER JOIN director d ON p.id_person = d.id_person;
+
+    -- MOVIE CHARATERS
+    SELECT movie_character_name
+    FROM movie_character;
+
+-- DETAILS
+    -- FILM
+        -- GENERAL
+        SELECT 
+            f.id_film,
+            f.title,
+            f.release_date,
+            DATE_FORMAT(SEC_TO_TIME(f.duration * 60), '%H:%i') AS duration,
+            f.synopsis,
+            CONCAT(p.first_name, ' ', p.last_name) AS director
+        FROM film f
+            INNER JOIN director d ON f.id_director = d.id_director
+            INNER JOIN person p ON d.id_person = p.id_person
+        WHERE f.id_film = :id;
+        -- CASTING
+        SELECT 
+            CONCAT(p.first_name, ' ', p.last_name) AS actor,
+            mc.character_name
+        FROM film f
+            INNER JOIN casting c ON f.id_film = c.id_film
+            INNER JOIN actor a ON c.id_actor = a.id_actor
+            INNER JOIN movie_character mc ON c.id_movie_character = mc.id_movie_character
+            INNER JOIN person p ON a.id_person = p.id_person
+        WHERE f.id_film = :id;
+
+    --PERSON
+        -- GENERAL
+        SELECT 
+            CONCAT(p.first_name, ' ', p.last_name) AS person,
+            p.sex,
+            p.birth_date
+        FROM person p
+        WHERE p.id_person = :id;
+        -- DIRECTED
+        SELECT
+            f.title,
+            f.release_date,
+            f.rating
+        FROM film f
+            INNER JOIN director d ON f.id_director = d.id_director
+            INNER JOIN person p ON d.id_person = p.id_person
+        WHERE p.id_person = :id;
+        -- PLAYED
+        SELECT
+            f.title,
+            f.release_date,
+            f.rating,
+            mc.character_name
+        FROM film f
+            INNER JOIN casting c ON f.id_film = c.id_film
+            INNER JOIN actor a ON c.id_actor = a.id_actor
+            INNER JOIN person p ON a.id_person = p.id_person
+            INNER JOIN movie_character mc ON c.id_movie_character = mc.id_movie_character
+        WHERE p.id_person = :id;
+
+    -- MOVIE CHARACTER
+        -- GENERAL
+        SELECT movie_character_name
+        FROM movie_character
+        WHERE id_movie_character = :id;
+        -- FILMS
+        SELECT
+            f.title,
+            f.release_date,
+            f.rating
+        FROM film f
+            INNER JOIN casting c ON f.id_film = c.id_film
+            INNER JOIN movie_character mc ON c.id_movie_character = mc.id_movie_character
+        WHERE mc.id_movie_character = :id;
+        -- ACTORS
+        SELECT
+            CONCAT(p.first_name, ' ', p.last_name) AS actor
+        FROM person p
+            INNER JOIN actor a ON p.id_person = a.id_person
+            INNER JOIN casting c ON a.id_actor = c.id_actor
+            INNER JOIN movie_character mc ON c.id_movie_character = mc.id_movie_character
+        WHERE mc.id_movie_character = :id;
+
+
+
+
+
 -- Création des index pour optimisation
-CREATE INDEX IF NOT EXISTS idx_film_realisateur ON film(id_realisateur);
-CREATE INDEX IF NOT EXISTS idx_film_date_sortie ON film(date_sortie);
-CREATE INDEX IF NOT EXISTS idx_film_duree ON film(duree);
-CREATE INDEX IF NOT EXISTS idx_casting_film_acteur ON casting(id_film, id_acteur);
+CREATE INDEX IF NOT EXISTS idx_film_director ON film(id_director);
+CREATE INDEX IF NOT EXISTS idx_film_release_date ON film(release_date);
+CREATE INDEX IF NOT EXISTS idx_film_duration ON film(duration);
+CREATE INDEX IF NOT EXISTS idx_casting_film_actor ON casting(id_film, id_actor);
 
 -- 1. Informations détaillées d'un film
 SELECT 
     f.id_film,
-    f.titre,
-    f.date_sortie,
-    DATE_FORMAT(SEC_TO_TIME(f.duree * 60), '%H:%i') AS duree,
-    CONCAT(p.prenom, ' ', p.nom) AS realisateur
+    f.title,
+    f.release_date,
+    DATE_FORMAT(SEC_TO_TIME(f.duration * 60), '%H:%i') AS duration,
+    f.synopsis,
+    CONCAT(p.first_name, ' ', p.last_name) AS director
 FROM film f
-    INNER JOIN realisateur r ON f.id_realisateur = r.id_realisateur
-    INNER JOIN personne p ON r.id_personne = p.id_personne;
+    INNER JOIN director d ON f.id_director = d.id_director
+    INNER JOIN person p ON d.id_person = p.id_person;
+
+--1.2 Casting d’un film
+SELECT 
+    CONCAT(p.first_name, ' ', p.last_name) AS actor,
+    mc.character_name
+FROM film f
+    INNER JOIN casting c ON f.id_film = c.id_film
+    INNER JOIN actor a ON c.id_actor = a.id_actor
+    INNER JOIN movie_character mc ON c.id_movie_character = mc.id_movie_character
+    INNER JOIN person p ON a.id_person = p.id_person
+WHERE f.id_film = 1;
 
 -- 2. Films de plus de 2h15
 SELECT 
-    f.titre,
-    DATE_FORMAT(SEC_TO_TIME(f.duree * 60), '%H:%i') AS duree
+    f.title,
+    DATE_FORMAT(SEC_TO_TIME(f.duration * 60), '%H:%i') AS duration
 FROM film f
-WHERE f.duree > 135
-ORDER BY f.duree DESC;
+WHERE f.duration > 135
+ORDER BY f.duration DESC;
 
 -- 3. Filmographie d'un réalisateur
 SELECT 
-    CONCAT(p.prenom, ' ', p.nom) AS realisateur,
-    f.titre,
-    DATE_FORMAT(f.date_sortie, '%Y') AS annee_sortie
+    CONCAT(p.first_name, ' ', p.last_name) AS director,
+    f.title,
+    DATE_FORMAT(f.release_date, '%Y') AS release_year
 FROM film f
-    INNER JOIN realisateur r ON f.id_realisateur = r.id_realisateur
-    INNER JOIN personne p ON r.id_personne = p.id_personne
-WHERE r.id_realisateur = 1;
+    INNER JOIN director d ON f.id_director = d.id_director
+    INNER JOIN person p ON d.id_person = p.id_person
+WHERE d.id_director = 1;
 
 -- 4. Statistiques des films par genre
 SELECT 
-    g.nom_genre,
-    COUNT(gf.id_film) AS nombre_films
+    g.name AS genre_name,
+    COUNT(gf.id_film) AS number_of_films
 FROM genre g
-    INNER JOIN genre_film gf ON g.id_genre = gf.id_genre
-GROUP BY g.id_genre, g.nom_genre
-ORDER BY nombre_films DESC;
+    INNER JOIN movie_genre gf ON g.id_genre = gf.id_genre
+GROUP BY g.id_genre, g.name
+ORDER BY number_of_films DESC;
 
 -- 5. Statistiques des films par réalisateur
 SELECT 
-    CONCAT(p.prenom, ' ', p.nom) AS realisateur,
-    COUNT(f.id_film) AS nombre_films
-FROM personne p
-    INNER JOIN realisateur r ON p.id_personne = r.id_personne
-    INNER JOIN film f ON r.id_realisateur = f.id_realisateur
-GROUP BY p.id_personne, p.prenom, p.nom
-ORDER BY nombre_films DESC;
+    CONCAT(p.first_name, ' ', p.last_name) AS director,
+    COUNT(f.id_film) AS number_of_films
+FROM person p
+    INNER JOIN director d ON p.id_person = d.id_person
+    INNER JOIN film f ON d.id_director = f.id_director
+GROUP BY p.id_person, p.first_name, p.last_name
+ORDER BY number_of_films DESC;
 
 -- 6. Distribution complète d'un film
 SELECT 
-    f.titre,
-    CONCAT(p.prenom, ' ', p.nom) AS acteur,
-    p.sexe,
-    pg.nom_personnage
+    f.title,
+    CONCAT(p.first_name, ' ', p.last_name) AS actor,
+    p.sex,
+    ch.name AS character_name
 FROM film f
     INNER JOIN casting c ON f.id_film = c.id_film
-    INNER JOIN acteur a ON c.id_acteur = a.id_acteur
-    INNER JOIN personnage pg ON c.id_personnage = pg.id_personnage
-    INNER JOIN personne p ON a.id_personne = p.id_personne
+    INNER JOIN actor a ON c.id_actor = a.id_actor
+    INNER JOIN character ch ON c.id_character = ch.id_character
+    INNER JOIN person p ON a.id_person = p.id_person
 WHERE f.id_film = 5;
 
 -- 7. Filmographie d'un acteur
 SELECT 
-    CONCAT(p.prenom, ' ', p.nom) AS acteur,
-    pg.nom_personnage,
-    f.titre,
-    f.date_sortie
+    CONCAT(p.first_name, ' ', p.last_name) AS actor,
+    ch.name AS character_name,
+    f.title,
+    f.release_date
 FROM film f
     INNER JOIN casting c ON f.id_film = c.id_film
-    INNER JOIN acteur a ON c.id_acteur = a.id_acteur
-    INNER JOIN personnage pg ON c.id_personnage = pg.id_personnage
-    INNER JOIN personne p ON a.id_personne = p.id_personne
-WHERE a.id_acteur = 1
-ORDER BY f.date_sortie DESC;
+    INNER JOIN actor a ON c.id_actor = a.id_actor
+    INNER JOIN character ch ON c.id_character = ch.id_character
+    INNER JOIN person p ON a.id_person = p.id_person
+WHERE a.id_actor = 1
+ORDER BY f.release_date DESC;
 
 -- 8. Acteurs-Réalisateurs (version optimisée avec JOIN)
 SELECT DISTINCT 
-    CONCAT(p.prenom, ' ', p.nom) AS acteur_realisateur
-FROM personne p
-    INNER JOIN acteur a ON p.id_personne = a.id_personne
-    INNER JOIN realisateur r ON p.id_personne = r.id_personne;
+    CONCAT(p.first_name, ' ', p.last_name) AS actor_director
+FROM person p
+    INNER JOIN actor a ON p.id_person = a.id_person
+    INNER JOIN director d ON p.id_person = d.id_person;
 
 -- 9. Films récents (moins de 5 ans)
 SELECT 
-    f.titre,
-    f.date_sortie
+    f.title,
+    f.release_date
 FROM film f
-WHERE f.date_sortie > DATE_SUB(CURRENT_DATE(), INTERVAL 5 YEAR)
-ORDER BY f.date_sortie DESC;
+WHERE f.release_date > DATE_SUB(CURRENT_DATE(), INTERVAL 5 YEAR)
+ORDER BY f.release_date DESC;
 
 -- 10. Répartition des acteurs par genre
 SELECT 
-    SUM(p.sexe = 'Homme') AS nombre_acteurs,
-    SUM(p.sexe = 'Femme') AS nombre_actrices
-FROM acteur a
-    INNER JOIN personne p ON a.id_personne = p.id_personne;
+    SUM(p.sex = 'Male') AS male_actors,
+    SUM(p.sex = 'Female') AS female_actors
+FROM actor a
+    INNER JOIN person p ON a.id_person = p.id_person;
 
 -- 11. Acteurs seniors (plus de 50 ans)
 SELECT 
-    CONCAT(p.prenom, ' ', p.nom) AS acteur,
-    TIMESTAMPDIFF(YEAR, p.dateNaissance, CURRENT_DATE()) AS age
-FROM personne p
-    INNER JOIN acteur a ON p.id_personne = a.id_personne
-WHERE TIMESTAMPDIFF(YEAR, p.dateNaissance, CURRENT_DATE()) > 50
+    CONCAT(p.first_name, ' ', p.last_name) AS actor,
+    TIMESTAMPDIFF(YEAR, p.birth_date, CURRENT_DATE()) AS age
+FROM person p
+    INNER JOIN actor a ON p.id_person = a.id_person
+WHERE TIMESTAMPDIFF(YEAR, p.birth_date, CURRENT_DATE()) > 50
 ORDER BY age DESC;
 
 -- 12. Acteurs prolifiques (3 films ou plus)
 SELECT 
-    CONCAT(p.prenom, ' ', p.nom) AS acteur,
-    COUNT(c.id_film) AS nombre_films
-FROM personne p
-    INNER JOIN acteur a ON p.id_personne = a.id_personne
-    INNER JOIN casting c ON a.id_acteur = c.id_acteur
-GROUP BY p.id_personne, p.prenom, p.nom
-HAVING nombre_films >= 3
-ORDER BY nombre_films DESC;
+    CONCAT(p.first_name, ' ', p.last_name) AS actor,
+    COUNT(c.id_film) AS number_of_films
+FROM person p
+    INNER JOIN actor a ON p.id_person = a.id_person
+    INNER JOIN casting c ON a.id_actor = c.id_actor
+GROUP BY p.id_person, p.first_name, p.last_name
+HAVING number_of_films >= 3
+ORDER BY number_of_films DESC;

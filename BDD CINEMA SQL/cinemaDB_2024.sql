@@ -74,18 +74,18 @@ INSERT INTO `actor` (`id_actor`, `id_person`) VALUES
 CREATE TABLE IF NOT EXISTS `casting` (
   `id_film` int(11) NOT NULL,
   `id_actor` int(11) NOT NULL,
-  `id_character` int(11) NOT NULL,
-  PRIMARY KEY (`id_film`,`id_actor`,`id_character`),
+  `id_movie_character` int(11) NOT NULL,
+  PRIMARY KEY (`id_film`,`id_actor`,`id_movie_character`),
   KEY `id_actor` (`id_actor`),
-  KEY `id_character` (`id_character`),
+  KEY `id_movie_character` (`id_movie_character`),
   CONSTRAINT `casting_ibfk_1` FOREIGN KEY (`id_film`) REFERENCES `film` (`id_film`),
   CONSTRAINT `casting_ibfk_2` FOREIGN KEY (`id_actor`) REFERENCES `actor` (`id_actor`),
-  CONSTRAINT `casting_ibfk_3` FOREIGN KEY (`id_character`) REFERENCES `character` (`id_character`)
+  CONSTRAINT `casting_ibfk_3` FOREIGN KEY (`id_movie_character`) REFERENCES `movie_character` (`id_movie_character`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- Data listing for cinemadb.casting: ~49 rows
 /*!40000 ALTER TABLE `casting` DISABLE KEYS */;
-INSERT INTO `casting` (`id_film`, `id_actor`, `id_character`) VALUES
+INSERT INTO `casting` (`id_film`, `id_actor`, `id_movie_character`) VALUES
 	(1, 1, 1),
 	(4, 1, 16),
 	(4, 2, 17),
@@ -268,17 +268,17 @@ INSERT INTO `genre_film` (`id_film`, `id_genre`) VALUES
 	(20, 12);
 /*!40000 ALTER TABLE `genre_film` ENABLE KEYS */;
 
--- Table structure for cinemadb.character
-CREATE TABLE IF NOT EXISTS `character` (
-  `id_character` int(11) NOT NULL AUTO_INCREMENT,
+-- Table structure for cinemadb.movie_character
+CREATE TABLE IF NOT EXISTS `movie_character` (
+  `id_movie_character` int(11) NOT NULL AUTO_INCREMENT,
   `character_name` varchar(50) NOT NULL,
-  PRIMARY KEY (`id_character`),
+  PRIMARY KEY (`id_movie_character`),
   UNIQUE KEY `character_name` (`character_name`)
 ) ENGINE=InnoDB AUTO_INCREMENT=51 DEFAULT CHARSET=latin1;
 
--- Data listing for cinemadb.character: ~50 rows
-/*!40000 ALTER TABLE `character` DISABLE KEYS */;
-INSERT INTO `character` (`id_character`, `character_name`) VALUES
+-- Data listing for cinemadb.movie_character: ~50 rows
+/*!40000 ALTER TABLE `movie_character` DISABLE KEYS */;
+INSERT INTO `movie_character` (`id_movie_character`, `character_name`) VALUES
 	(11, 'Alfred Pennyworth'),
 	(4, 'Ariadne'),
 	(3, 'Arthur'),
@@ -329,7 +329,7 @@ INSERT INTO `character` (`id_character`, `character_name`) VALUES
 	(48, 'Rita Vrataski'),
 	(49, 'Wade Watts'),
 	(50, 'Sammy Fabelman');
-/*!40000 ALTER TABLE `character` ENABLE KEYS */;
+/*!40000 ALTER TABLE `movie_character` ENABLE KEYS */;
 
 -- Table structure for cinemadb.person
 CREATE TABLE IF NOT EXISTS `person` (
@@ -440,7 +440,7 @@ INSERT INTO `director` (`id_director`, `id_person`) VALUES
 CREATE TABLE IF NOT EXISTS `v_casting_complet` (
   `title` VARCHAR(100) NOT NULL,
   `actor` VARCHAR(101) NOT NULL,
-  `role` VARCHAR(50) NOT NULL
+  `character_name` VARCHAR(50) NOT NULL
 ) ENGINE=MyISAM;
 
 -- View structure for view cinemadb.v_complete_film
@@ -458,12 +458,12 @@ DROP TABLE IF EXISTS `v_casting_complet`;
 CREATE ALGORITHM=UNDEFINED SQL SECURITY DEFINER VIEW `v_casting_complet` AS SELECT 
     f.title,
     CONCAT(p.first_name, ' ', p.last_name) as actor,
-    c.character_name as role
+    mc.character_name
 FROM FILM f
 JOIN CASTING cs ON f.id_film = cs.id_film
 JOIN ACTOR a ON cs.id_actor = a.id_actor
 JOIN PERSON p ON a.id_person = p.id_person
-JOIN CHARACTER c ON cs.id_character = c.id_character;
+JOIN movie_character mc ON cs.id_movie_character = mc.id_movie_character;
 
 -- View structure for view cinemadb.v_complete_film
 DROP TABLE IF EXISTS `v_film_complet`;
