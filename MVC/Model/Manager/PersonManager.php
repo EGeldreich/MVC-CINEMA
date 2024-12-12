@@ -11,7 +11,9 @@ class PersonManager {
     public function getDirectors(){
         $pdo = Connect::seConnecter();
         $request = $pdo->query("
-            SELECT CONCAT(p.first_name, ' ', p.last_name) AS director
+            SELECT
+                CONCAT(p.first_name, ' ', p.last_name) AS director,
+                d.id_director
             FROM person p
             INNER JOIN director d ON p.id_person = d.id_person
             ORDER BY p.last_name;
@@ -31,6 +33,17 @@ class PersonManager {
         ");
         $actors = $request->fetchAll();
         return $actors;
+    }
+
+    // Get the list of all persons and their birthdate
+    public function getPersons(){
+        $pdo = Connect::seConnecter();
+        $request = $pdo->query("
+            SELECT CONCAT(p.first_name, ' ', p.last_name) AS person, p.birth_date
+            FROM person p;
+        ");
+        $persons = $request->fetchAll();
+        return $persons;
     }
 
     // Get the details about a specified person

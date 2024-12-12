@@ -5,4 +5,6 @@ Diviser le controller en plusieurs fichiers : good practice ou préférence pers
 
 Un filtreur par cas dans l'index ? Ou overkill ?
 
-Comment gérer l'ajout de personne dans les formulaires -> possibilté de 2 personnes avec le même nom
+Comment gérer l'ajout de personne dans les formulaires -> possibilité de 2 personnes avec le même nom
+
+Besoin de filtre sur un input date ?

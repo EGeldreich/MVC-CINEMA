@@ -21,13 +21,13 @@ class ContentManager {
         $pdo = Connect::seConnecter();
         $request = $pdo->prepare("
             INSERT INTO person (id_person, last_name, first_name, sex, birth_date)
-            VALUES (DEFAULT, :lastname, :firstname, :persongenre, :birthdate)
+            VALUES (DEFAULT, :lastname, :firstname, :personGenre, :birthDate)
         ");
         $request->execute([
             "lastname" => $person['lastname'],
             "firstname" => $person['firstname'],
-            "persongenre" => $person['persongenre'],
-            "birthdate" => $person['birthdate']
+            "personGenre" => $person['personGenre'],
+            "birthDate" => $person['birthDate']
         ]);
     }
 
@@ -35,14 +35,26 @@ class ContentManager {
     public function addFilm($film){
         $pdo = Connect::seConnecter();
         $request = $pdo->prepare("
-            INSERT INTO person (id_person, last_name, first_name, sex, birth_date)
-            VALUES (DEFAULT, :lastname, :firstname, :persongenre, :birthdate)
+            INSERT INTO film
+                (id_film, title, release_date, duration, synopsis, rating, poster, id_director)
+            VALUES
+                (DEFAULT,
+                :title,
+                :releaseDate,
+                :duration,
+                :synopsis,
+                :rating,
+                :poster,
+                :idDirector);
         ");
         $request->execute([
-            "lastname" => $person['lastname'],
-            "firstname" => $person['firstname'],
-            "persongenre" => $person['persongenre'],
-            "birthdate" => $person['birthdate']
+            "title" => $film['title'],
+            "releaseDate" => $film['releaseDate'],
+            "duration" => $film['duration'],
+            "synopsis" => $film['synopsis'],
+            "rating" => $film['rating'],
+            "poster" => $film['poster'],
+            "idDirector" => $film['idDirector'],
         ]);
     }
 }

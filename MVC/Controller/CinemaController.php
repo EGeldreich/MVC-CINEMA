@@ -76,7 +76,8 @@ class CinemaController {
 
     // ----- FORMS ------
     public function formList() {
-
+        $personManager = new PersonManager();
+        $directors = $personManager->getDirectors();
         require "View/Content/formList.php";
     }
     // ADD GENRE
@@ -100,12 +101,12 @@ class CinemaController {
     public function addPerson() {
         // Check if the form has been correctly submitted
         if(isset($_POST['submit'])){
+
             // Sanitize the input
             $firstname = filter_input(INPUT_POST, "firstname", FILTER_SANITIZE_SPECIAL_CHARS);
             $lastname = filter_input(INPUT_POST, "lastname", FILTER_SANITIZE_SPECIAL_CHARS);
             $personGenre = filter_input(INPUT_POST, "personGenre", FILTER_SANITIZE_SPECIAL_CHARS);
             $birthDate = filter_input(INPUT_POST, "birthDate", FILTER_SANITIZE_SPECIAL_CHARS);
-            var_dump($firstname, $lastname, $personGenre, $birthDate);
 
             if($firstname && $lastname && $personGenre && $birthDate){ // IF sanitize returns a correct variable
                 $person = [
@@ -116,8 +117,43 @@ class CinemaController {
                 ];
 
                 $contentManager = new ContentManager();
-                $person = $contentManager->addPerson($person);
+                $addperson = $contentManager->addPerson($person);
                 header('location: index.php?action=ActorList');
+                exit();
+            } else {
+                // header('location: ./View/Content/errorLanding.php');
+            }
+        }
+    }
+    // ADD FILM
+    public function addFilm() {
+        // Check if the form has been correctly submitted
+        if(isset($_POST['submit'])){
+
+            // Sanitize the input
+            $title = filter_input(INPUT_POST, "title", FILTER_SANITIZE_SPECIAL_CHARS);
+            $releaseDate = filter_input(INPUT_POST, "releaseDate", FILTER_SANITIZE_SPECIAL_CHARS);
+            $duration = filter_input(INPUT_POST, "duration", FILTER_VALIDATE_INT);
+            $director = filter_input(INPUT_POST, "director", FILTER_VALIDATE_INT);
+            $rating = filter_input(INPUT_POST, "rating", FILTER_VALIDATE_FLOAT, FILTER_FLAG_ALLOW_FRACTION);
+            $poster = filter_input(INPUT_POST, "poster", FILTER_SANITIZE_SPECIAL_CHARS);
+            $synopsis = filter_input(INPUT_POST, "synopsis", FILTER_SANITIZE_SPECIAL_CHARS);
+
+            if($title && $releaseDate && $duration && $director && $rating && $poster && $synopsis){
+                // IF sanitize returns a correct variable and if director is a known person
+                $film = [
+                    "title" => $title,
+                    "releaseDate" => $releaseDate,
+                    "duration" => $duration,
+                    "idDirector" => $director,
+                    "rating" => $rating,
+                    "poster" => $poster,
+                    "synopsis" => $synopsis
+                ];
+                
+                $contentManager = new ContentManager();
+                $addfilm = $contentManager->addFilm($film);
+                header('location: index.php?action=FilmDetails');
                 exit();
             } else {
                 // header('location: ./View/Content/errorLanding.php');

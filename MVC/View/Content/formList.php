@@ -8,6 +8,9 @@
     <button id="addCasting">Add Casting</button>
 
 </div>
+<br>
+<br>
+<br>
 <!-- Genre -->
 <div class="genre-form">
     <form method="post" action="index.php?action=addGenre">
@@ -17,6 +20,9 @@
         <input type="submit" value="Submit" name="submit">
     </form>
 </div>
+<br>
+<br>
+<br>
 <!-- Person -->
 <div class="person-form">
     <form method="post" action="index.php?action=addPerson">
@@ -39,6 +45,9 @@
         <input type="submit" value="Submit" name="submit">
     </form>
 </div>
+<br>
+<br>
+<br>
 <!-- Film -->
 <div class="film-form">
     <form method="post" action="index.php?action=addFilm">
@@ -49,10 +58,17 @@
         <input type="date" id="releaseDate" name="releaseDate" required>
 
         <label for="duration">Duration</label>
-        <input type="date" id="duration" name="duration" required>
+        <input type="text" id="duration" name="duration" placeholder="Duration, in minutes" required>
 
         <label for="director">Director</label>
-        <input type="text" id="director" name="director" placeholder="Film Director" required>
+        <select name="director" id="director" size="1" required>
+            <?php foreach($directors as $director){ ?>
+                <option value='<?= $director['id_director'] ?>'><?= $director['director'] ?></option>
+            <?php } ?>
+        </select>
+        
+        <label for="rating">Rating</label>
+        <input type="text" id="rating" name="rating" placeholder="Rating, 0 through 10." required>
 
         <label for="poster">Poster</label>
         <input type="text" id="poster" name="poster" placeholder="URL of the poster" required>

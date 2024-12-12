@@ -13,8 +13,10 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 -- Database structure listing for cinemadb
-CREATE DATABASE IF NOT EXISTS `cinemadb` /*!40100 DEFAULT CHARACTER SET latin1 */;
-USE `cinemadb`;
+-- CREATE DATABASE IF NOT EXISTS `cinemadb` /*!40100 DEFAULT CHARACTER SET latin1 */;
+-- USE `cinemadb`;
+CREATE DATABASE IF NOT EXISTS `cinema_emmanuel` /*!40100 DEFAULT CHARACTER SET latin1 */;
+USE `cinema_emmanuel`;
 
 -- Table structure for cinemadb.actor
 CREATE TABLE IF NOT EXISTS `actor` (

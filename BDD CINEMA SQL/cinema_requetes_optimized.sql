@@ -139,7 +139,7 @@
             (id_film, title, release_date, duration, synopsis, rating, poster, id_director)
         VALUES
 	        (DEFAULT,
-            ;title,
+            :title,
             :releaseDate,
             :duration,
             :synopsis,
