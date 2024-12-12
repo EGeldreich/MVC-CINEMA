@@ -28,7 +28,7 @@
             </div>
             <div class="navbar_right flex-row">
                 <i class="fa-solid fa-magnifying-glass"></i>
-                <a href="LoginForm.php">My account</a>
+                <a href="index.php?action=FormList">Add content</a>
             </div>
         </nav>
     </header>

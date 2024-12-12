@@ -1,9 +1,12 @@
 <?php
 
+// See CinemaController for info about this
 namespace Model\Manager;
 use Model\Connect;
 
 class FilmManager {
+
+    // Get list of films, return it as $films
     public function getFilms(){
         $pdo = Connect::seConnecter();
         $request = $pdo->query("
@@ -15,6 +18,7 @@ class FilmManager {
         return $films;
     }
 
+    // Get details for a specific film
     public function getFilm($id){
         $pdo = Connect::seConnecter();
         $request = $pdo->prepare("
@@ -35,6 +39,7 @@ class FilmManager {
         return $film;
     }
 
+    // Get list of directors for a specific film
     public function getDirectors($id){
         $pdo = Connect::seConnecter();
         $request = $pdo->prepare("
@@ -51,6 +56,7 @@ class FilmManager {
         return $directors;
     }
 
+    // Get casting information for a specific film
     public function getCastings($id){
         $pdo = Connect::seConnecter();
         $request = $pdo->prepare("
@@ -70,6 +76,7 @@ class FilmManager {
         return $castings;
     }
 
+    // Get list of genres for a specific film
     public function getGenres($id){
         $pdo = Connect::seConnecter();
         $request = $pdo->prepare("

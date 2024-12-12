@@ -1,9 +1,12 @@
 <?php
 
+// See CinemaController for info about this
 namespace Model\Manager;
 use Model\Connect;
 
 class CharacterManager {
+
+    // Get all the characters
     public function getCharacters(){
         $pdo = Connect::seConnecter();
         $request = $pdo->query("
@@ -14,6 +17,7 @@ class CharacterManager {
         return $characters;
     }
 
+    // Get info about a specific character
     public function getCharacter($id){
         $pdo = Connect::seConnecter();
         $request = $pdo->prepare("
@@ -25,6 +29,8 @@ class CharacterManager {
         $characters = $request->fetch();
         return $characters;
     }
+
+    // Get list of films in which a character appeared
     public function getFilms($id){
         $pdo = Connect::seConnecter();
         $request = $pdo->prepare("
@@ -41,6 +47,8 @@ class CharacterManager {
         $films = $request->fetchAll();
         return $films;
     }
+
+    // Get list of actors that played that role
     public function getActors($id){
         $pdo = Connect::seConnecter();
         $request = $pdo->prepare("

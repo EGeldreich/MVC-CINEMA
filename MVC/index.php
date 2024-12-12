@@ -2,6 +2,7 @@
 
 use Controller\CinemaController;
 
+
 spl_autoload_register(function($class_name) {
     // Convert namespace separators to directory separators
     $file = str_replace('\\', DIRECTORY_SEPARATOR, $class_name) . '.php';
@@ -30,5 +31,9 @@ if(isset($_GET["action"])){
         case "Genre" : $ctrlCinema->genreDetails($id); break;
         case "CharacterList" : $ctrlCinema->characterList(); break;
         case "Character" : $ctrlCinema->characterDetails($id); break;
+
+        case "FormList" : $ctrlCinema->formList(); break;
+        case "addGenre" : $ctrlCinema->addGenre(); break;
+        case "addPerson" : $ctrlCinema->addPerson(); break;
     };
 };

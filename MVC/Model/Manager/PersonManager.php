@@ -1,9 +1,13 @@
 <?php
 
+// See CinemaController for info about this
 namespace Model\Manager;
 use Model\Connect;
 
+// Handle all queries related to persons
 class PersonManager {
+
+    // Get the list of directors and return it as $directors
     public function getDirectors(){
         $pdo = Connect::seConnecter();
         $request = $pdo->query("
@@ -15,6 +19,8 @@ class PersonManager {
         $directors = $request->fetchAll();
         return $directors;
     }
+
+    // Get the list of actors and return it as $actors
     public function getActors(){
         $pdo = Connect::seConnecter();
         $request = $pdo->query("
@@ -27,6 +33,7 @@ class PersonManager {
         return $actors;
     }
 
+    // Get the details about a specified person
     public function getPerson($id){
         $pdo = Connect::seConnecter();
         $request = $pdo->prepare("
@@ -42,6 +49,7 @@ class PersonManager {
         return $person;
     }
 
+    // Check if a person is an actor or not, return 0 or 1 accordingly
     public function getIsActor($id){
         $pdo = Connect::seConnecter();
         $request = $pdo->prepare("
@@ -58,6 +66,7 @@ class PersonManager {
         return $isActor;
     }
 
+    // Check if a person is a director or not, return 0 or 1 accordingly
     public function getIsDirector($id){
         $pdo = Connect::seConnecter();
         $request = $pdo->prepare("
@@ -74,6 +83,7 @@ class PersonManager {
         return $isDirector;
     }
 
+    // Get list of films directed by a specific person
     public function getDirected($id){
         $pdo = Connect::seConnecter();
         $request = $pdo->prepare("
@@ -90,6 +100,8 @@ class PersonManager {
         $directed = $request->fetchAll();
         return $directed;
     }
+
+    // Get list of films in which a specific person as played
     public function getPlayed($id){
         $pdo = Connect::seConnecter();
         $request = $pdo->prepare("

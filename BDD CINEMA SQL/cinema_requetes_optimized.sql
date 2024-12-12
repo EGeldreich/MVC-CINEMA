@@ -127,6 +127,15 @@
             INNER JOIN movie_character mc ON c.id_movie_character = mc.id_movie_character
         WHERE mc.id_movie_character = :id;
 
+    -- CONTENT MANAGER
+        -- ADD GENRE
+        INSERT INTO genre (id_genre, genre_name)
+        VALUES (DEFAULT, :genre_name);
+        -- ADD PERSON
+        INSERT INTO person (id_person, last_name, first_name, sex, birth_date)
+        VALUES (DEFAULT, :lastname, :firstname, :persongenre, :birthdate);
+
+
 
 
 

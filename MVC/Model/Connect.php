@@ -2,10 +2,14 @@
 namespace Model;
 
 abstract class Connect {
-    const HOST = "localhost:8889"; // Port par défaut de MAMP
-    const DB = "cinemadb";
+    const HOST = "localhost"; // Port par défaut de MAMP
+    const DB = "cinema_emmanuel";
     const USER = "root";
-    const PASS = "root";
+    const PASS = "";
+    // const HOST = "localhost:8889"; // Port par défaut de MAMP
+    // const DB = "cinemadb";
+    // const USER = "root";
+    // const PASS = "root";
 
     public static function seConnecter() {
         try {
