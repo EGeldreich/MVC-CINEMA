@@ -7,25 +7,25 @@ class CharacterManager {
     public function getCharacters(){
         $pdo = Connect::seConnecter();
         $request = $pdo->query("
-            SELECT movie_character_name
+            SELECT character_name AS name
             FROM movie_character;
         ");
         $characters = $request->fetchAll();
         return $characters;
     }
 
-    public function getCharacter(){
+    public function getCharacter($id){
         $pdo = Connect::seConnecter();
         $request = $pdo->prepare("
-            SELECT movie_character_name
+            SELECT character_name
             FROM movie_character
             WHERE id_movie_character = :id;
         ");
-        $request->execute(["id"->$id]);
+        $request->execute(["id" => $id]);
         $characters = $request->fetch();
         return $characters;
     }
-    public function getFilms(){
+    public function getFilms($id){
         $pdo = Connect::seConnecter();
         $request = $pdo->prepare("
             SELECT
@@ -37,11 +37,11 @@ class CharacterManager {
                 INNER JOIN movie_character mc ON c.id_movie_character = mc.id_movie_character
             WHERE mc.id_movie_character = :id;
         ");
-        $request->execute(["id"->$id]);
+        $request->execute(["id" => $id]);
         $films = $request->fetchAll();
         return $films;
     }
-    public function getActors(){
+    public function getActors($id){
         $pdo = Connect::seConnecter();
         $request = $pdo->prepare("
             SELECT
@@ -52,7 +52,7 @@ class CharacterManager {
                 INNER JOIN movie_character mc ON c.id_movie_character = mc.id_movie_character
             WHERE mc.id_movie_character = :id;
         ");
-        $request->execute(["id"->$id]);
+        $request->execute(["id" => $id]);
         $actors = $request->fetchAll();
         return $actors;
     }

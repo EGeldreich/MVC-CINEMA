@@ -35,6 +35,9 @@ html {
 }
 .raleway {
     font-family: "Raleway", serif;
+    -webkit-font-feature-settings: "lnum";
+    -moz-font-feature-settings: "lnum";
+    font-feature-settings: "lnum";
 }
 .oswald {
     font-family: "Oswald", serif;

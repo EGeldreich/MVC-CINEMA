@@ -86,6 +86,23 @@
             INNER JOIN person p ON a.id_person = p.id_person
             INNER JOIN movie_character mc ON c.id_movie_character = mc.id_movie_character
         WHERE p.id_person = :id;
+        -- ACTOR ?
+        SELECT EXISTS (
+            SELECT
+                p.id_person
+            FROM person p
+                INNER JOIN actor a ON p.id_person = a.id_person
+            WHERE p.id_person = :id
+        ) AS is_actor;
+        -- DIRECTOR ?
+        SELECT EXISTS (
+            SELECT
+                p.id_person
+            FROM person p
+                INNER JOIN director d ON p.id_person = d.id_person
+            WHERE p.id_person = :id
+        ) AS is_director;
+
 
     -- MOVIE CHARACTER
         -- GENERAL

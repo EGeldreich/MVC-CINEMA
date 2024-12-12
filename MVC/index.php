@@ -22,12 +22,13 @@ $id = (isset($_GET["id"])) ? $_GET["id"] : NULL;
 if(isset($_GET["action"])){
     switch ($_GET["action"]) {
         case "FilmList" : $ctrlCinema->filmList(); break;
-        case "Film" : $ctrlCinema->filmDetails(); break;
+        case "Film" : $ctrlCinema->filmDetails($id); break;
         case "ActorList" : $ctrlCinema->actorList(); break;
-        case "Actor" : $ctrlCinema->actorDetails(); break;
         case "DirectorList" : $ctrlCinema->directorList(); break;
-        case "Director" : $ctrlCinema->directorDetails(); break;
+        case "Person" : $ctrlCinema->personDetails($id); break;
         case "GenreList" : $ctrlCinema->genreList(); break;
-        case "Genre" : $ctrlCinema->genreDetails(); break;
+        case "Genre" : $ctrlCinema->genreDetails($id); break;
+        case "CharacterList" : $ctrlCinema->characterList(); break;
+        case "Character" : $ctrlCinema->characterDetails($id); break;
     };
 };

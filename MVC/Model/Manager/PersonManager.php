@@ -27,7 +27,7 @@ class PersonManager {
         return $actors;
     }
 
-    public function getPerson(){
+    public function getPerson($id){
         $pdo = Connect::seConnecter();
         $request = $pdo->prepare("
             SELECT 
@@ -37,11 +37,44 @@ class PersonManager {
             FROM person p
             WHERE p.id_person = :id;
         ");
-        $request->execute(["id"->$id]);
+        $request->execute(["id" => $id]);
         $person = $request->fetch();
-        return $actors;
+        return $person;
     }
-    public function getDirected(){
+
+    public function getIsActor($id){
+        $pdo = Connect::seConnecter();
+        $request = $pdo->prepare("
+            SELECT EXISTS (
+                SELECT
+                    p.id_person
+                FROM person p
+                    INNER JOIN actor a ON p.id_person = a.id_person
+                WHERE p.id_person = :id
+            ) AS is_actor;
+        ");
+        $request->execute(["id" => $id]);
+        $isActor = $request->fetch();
+        return $isActor;
+    }
+
+    public function getIsDirector($id){
+        $pdo = Connect::seConnecter();
+        $request = $pdo->prepare("
+            SELECT EXISTS (
+                SELECT
+                    p.id_person
+                FROM person p
+                    INNER JOIN director d ON p.id_person = d.id_person
+                WHERE p.id_person = :id
+            ) AS is_director;
+        ");
+        $request->execute(["id" => $id]);
+        $isDirector = $request->fetch();
+        return $isDirector;
+    }
+
+    public function getDirected($id){
         $pdo = Connect::seConnecter();
         $request = $pdo->prepare("
             SELECT
@@ -53,11 +86,11 @@ class PersonManager {
                 INNER JOIN person p ON d.id_person = p.id_person
             WHERE p.id_person = :id;
         ");
-        $request->execute(["id"->$id]);
+        $request->execute(["id" => $id]);
         $directed = $request->fetchAll();
         return $directed;
     }
-    public function getPlayed(){
+    public function getPlayed($id){
         $pdo = Connect::seConnecter();
         $request = $pdo->prepare("
             SELECT
@@ -72,7 +105,7 @@ class PersonManager {
                 INNER JOIN movie_character mc ON c.id_movie_character = mc.id_movie_character
             WHERE p.id_person = :id;
         ");
-        $request->execute(["id"->$id]);
+        $request->execute(["id" => $id]);
         $played = $request->fetchAll();
         return $played;
     }

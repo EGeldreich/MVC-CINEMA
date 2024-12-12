@@ -15,31 +15,48 @@ class FilmManager {
         return $films;
     }
 
-    public function getFilm(){
+    public function getFilm($id){
         $pdo = Connect::seConnecter();
         $request = $pdo->prepare("
             SELECT 
                 f.id_film,
                 f.title,
                 f.release_date,
+                f.rating,
                 DATE_FORMAT(SEC_TO_TIME(f.duration * 60), '%H:%i') AS duration,
-                f.synopsis,
-                CONCAT(p.first_name, ' ', p.last_name) AS director
+                f.synopsis
             FROM film f
                 INNER JOIN director d ON f.id_director = d.id_director
                 INNER JOIN person p ON d.id_person = p.id_person
             WHERE f.id_film = :id;
         ");
-        $request->execute(["id" -> $id]);
+        $request->execute(['id' => $id]);
         $film = $request->fetch();
         return $film;
     }
 
-    public function getCastings(){
+    public function getDirectors($id){
         $pdo = Connect::seConnecter();
         $request = $pdo->prepare("
             SELECT 
-                CONCAT(p.first_name, ' ', p.last_name) AS actor,
+                p.first_name,
+                p.last_name
+            FROM film f
+                INNER JOIN director d ON f.id_director = d.id_director
+                INNER JOIN person p ON d.id_person = p.id_person
+            WHERE f.id_film = :id;
+        ");
+        $request->execute(["id" => $id]);
+        $directors = $request->fetchAll();
+        return $directors;
+    }
+
+    public function getCastings($id){
+        $pdo = Connect::seConnecter();
+        $request = $pdo->prepare("
+            SELECT 
+                p.first_name,
+                p.last_name,
                 mc.character_name
             FROM film f
                 INNER JOIN casting c ON f.id_film = c.id_film
@@ -48,12 +65,12 @@ class FilmManager {
                 INNER JOIN person p ON a.id_person = p.id_person
             WHERE f.id_film = :id;
         ");
-        $request->execute(["id" -> $id]);
+        $request->execute(["id" => $id]);
         $castings = $request->fetchAll();
         return $castings;
     }
 
-    public function getGenres(){
+    public function getGenres($id){
         $pdo = Connect::seConnecter();
         $request = $pdo->prepare("
             SELECT g.genre_name
@@ -62,7 +79,7 @@ class FilmManager {
                 INNER JOIN film f ON gf.id_film = f.id_film
             WHERE f.id_film = :id;
         ");
-        $request->execute(["id" -> $id]);
+        $request->execute(["id" => $id]);
         $genres = $request->fetchAll();
         return $genres;
     }

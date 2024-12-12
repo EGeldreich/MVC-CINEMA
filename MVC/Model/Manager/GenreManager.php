@@ -33,7 +33,7 @@ class GenreManager {
     //             INNER JOIN person p ON a.id_person = p.id_person
     //         WHERE f.id_film = :id;
     //     ");
-    //     $request->execute(["id" -> $id]);
+    //     $request->execute(["id" => $id]);
     //     $castings = $request->fetchAll();
     //     return $castings;
     // }

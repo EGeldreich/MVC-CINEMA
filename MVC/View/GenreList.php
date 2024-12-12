@@ -1,6 +1,5 @@
-<?php ob_start(); 
-?>
-
+<?php ob_start(); ?>
+<h1 class="oswald">Genres</h1>
 <table>
     <thead>
         <tr>
@@ -22,7 +21,6 @@
 <?php
 
     $title = "TMH - Genres";
-    $secondary_title = "Genres";
     $content = ob_get_clean();
     require_once "View/template.php";
     

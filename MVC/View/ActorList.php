@@ -1,6 +1,5 @@
-<?php ob_start(); 
-?>
-
+<?php ob_start(); ?>
+<h1 class="oswald">Actors</h1>
 <table>
     <thead>
         <tr>
@@ -20,7 +19,6 @@
 <?php
 
     $title = "TMH - Actors";
-    $secondary_title = "Actors";
     $content = ob_get_clean();
     require_once "View/template.php";
     

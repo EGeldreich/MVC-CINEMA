@@ -23,6 +23,7 @@
                     <a href="index.php?action=GenreList">Genres</a>
                     <a href="index.php?action=ActorList">Actors</a>
                     <a href="index.php?action=DirectorList">Directors</a>
+                    <a href="index.php?action=CharacterList">Characters</a>
                 </div>
             </div>
             <div class="navbar_right flex-row">
@@ -32,7 +33,6 @@
         </nav>
     </header>
     <main class="raleway">
-        <h1 class="oswald"><?= $secondary_title ?></h1>
         <?= $content ?>
     </main>
 </body>

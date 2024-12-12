@@ -41,27 +41,30 @@ class CinemaController {
     }
     // ----- DETAILS -----
     // FILM DETAILS
-    public function filmDetails() {
+    public function filmDetails($id) {
         $filmManager = new FilmManager();
-        $film = $filmManager->getFilm();
-        $castings = $filmManager->getCastings();
-        $genres = $filmManager->getGenres();
+        $film = $filmManager->getFilm($id);
+        $castings = $filmManager->getCastings($id);
+        $directors = $filmManager->getDirectors($id);
+        $genres = $filmManager->getGenres($id);
         require "view/filmDetails.php";
     }
     // PERSON DETAILS
-    public function personDetails() {
+    public function personDetails($id) {
         $personManager = new PersonManager();
-        $person = $personManager->getPerson();
-        $directed = $personManager->getDirected();
-        $played = $personManager->getPlayed();
+        $isActor = $personManager->getisActor($id);
+        $isDirector = $personManager->getisDirector($id);
+        $played = $personManager->getPlayed($id);
+        $person = $personManager->getPerson($id);
+        $directed = $personManager->getDirected($id);
         require "view/personDetails.php";
     }
     // CHARACTER DETAILS
-    public function characterDetails() {
+    public function characterDetails($id) {
         $characterManager = new CharacterManager();
-        $character = $characterManager->getCharacter();
-        $films = $characterManager->getFilms();
-        $actors = $characterManager->getActors();
+        $character = $characterManager->getCharacter($id);
+        $films = $characterManager->getFilms($id);
+        $actors = $characterManager->getActors($id);
         require "view/characterDetails.php";
     }
 }

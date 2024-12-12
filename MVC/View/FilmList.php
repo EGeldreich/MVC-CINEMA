@@ -1,6 +1,5 @@
-<?php ob_start(); 
-?>
-
+<?php ob_start(); ?>
+<h1 class="oswald">All movies</h1>
 <table>
     <thead>
         <tr>
@@ -13,7 +12,7 @@
         <?php
             foreach($films as $film) { ?>
                 <tr>
-                    <td><a href="index.php?action=Film&id=1"><?= htmlspecialchars($film['title']) ?></a></td>
+                    <td><a href='index.php?action=Film&id=<?= ($film['id_film']) ?>'><?= ($film['title']) ?></a></td>
                     <td><?= $film['release_date'] ?></td>
                     <td><?= $film['rating'] ?></td>
                 </tr>
@@ -24,7 +23,6 @@
 <?php
 
     $title = "TMH - Movies";
-    $secondary_title = "All movies";
     $content = ob_get_clean();
     require_once "View/template.php";
     
