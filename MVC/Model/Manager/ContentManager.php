@@ -10,8 +10,8 @@ class ContentManager {
     public function addGenre($genreName){
         $pdo = Connect::seConnecter();
         $request = $pdo->prepare("
-            INSERT INTO genre (id_genre, genre_name)
-            VALUES (DEFAULT, :genreName);
+            INSERT INTO genre (genre_name)
+            VALUES (:genreName);
         ");
         $request->execute(["genreName" => $genreName]);
     }
@@ -20,8 +20,8 @@ class ContentManager {
     public function addPerson($person){
         $pdo = Connect::seConnecter();
         $request = $pdo->prepare("
-            INSERT INTO person (id_person, last_name, first_name, sex, birth_date)
-            VALUES (DEFAULT, :lastname, :firstname, :personGenre, :birthDate)
+            INSERT INTO person (last_name, first_name, sex, birth_date)
+            VALUES (:lastname, :firstname, :personGenre, :birthDate)
         ");
         $request->execute([
             "lastname" => $person['lastname'],
@@ -36,10 +36,9 @@ class ContentManager {
         $pdo = Connect::seConnecter();
         $request = $pdo->prepare("
             INSERT INTO film
-                (id_film, title, release_date, duration, synopsis, rating, poster, id_director)
+                (title, release_date, duration, synopsis, rating, poster, id_director)
             VALUES
-                (DEFAULT,
-                :title,
+                (:title,
                 :releaseDate,
                 :duration,
                 :synopsis,
@@ -56,5 +55,7 @@ class ContentManager {
             "poster" => $film['poster'],
             "idDirector" => $film['idDirector'],
         ]);
+
+        return $pdo->lastInsertId();
     }
 }

@@ -42,7 +42,7 @@ class CinemaController {
     // GENRE LIST 
     public function genreList() {
         $genreManager = new GenreManager();
-        $genres = $genreManager->getgenres();
+        $genres = $genreManager->getGenres();
         require "View/Film/genreList.php";
     }
     // ----- DETAILS -----
@@ -78,6 +78,8 @@ class CinemaController {
     public function formList() {
         $personManager = new PersonManager();
         $directors = $personManager->getDirectors();
+        $genreManager = new GenreManager();
+        $genres = $genreManager->getGenres();
         require "View/Content/formList.php";
     }
     // ADD GENRE
@@ -152,8 +154,8 @@ class CinemaController {
                 ];
                 
                 $contentManager = new ContentManager();
-                $addfilm = $contentManager->addFilm($film);
-                header('location: index.php?action=FilmDetails');
+                $idfilm = $contentManager->addFilm($film);
+                header('location: index.php?action=FilmDetails&id='.$idfilm);
                 exit();
             } else {
                 // header('location: ./View/Content/errorLanding.php');

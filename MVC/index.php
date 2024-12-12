@@ -2,7 +2,6 @@
 
 use Controller\CinemaController;
 
-
 spl_autoload_register(function($class_name) {
     // Convert namespace separators to directory separators
     $file = str_replace('\\', DIRECTORY_SEPARATOR, $class_name) . '.php';

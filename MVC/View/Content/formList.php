@@ -67,11 +67,21 @@
             <?php } ?>
         </select>
         
+        <fieldset>
+            <legend>This film genres</legend>
+            <?php foreach($genres as $genre){ ?>
+                <div>
+                    <input type="checkbox" class="genre-checkbox" name="genre" value='<?= $genre['genre_name'] ?>'/>
+                    <label for='genre'><?= $genre['genre_name'] ?></label>
+                </div>
+            <?php } ?>
+        </fieldset>
+        
         <label for="rating">Rating</label>
         <input type="text" id="rating" name="rating" placeholder="Rating, 0 through 10." required>
 
         <label for="poster">Poster</label>
-        <input type="text" id="poster" name="poster" placeholder="URL of the poster" required>
+        <input type="text" id="poster" name="poster" placeholder="Poster URL" required>
 
         <label for="synopsis">Synopsis</label>
         <input type="text-area" id="synopsis" name="synopsis" placeholder="Synopsis of the movie">
