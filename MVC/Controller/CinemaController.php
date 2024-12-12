@@ -78,8 +78,13 @@ class CinemaController {
     public function formList() {
         $personManager = new PersonManager();
         $directors = $personManager->getDirectors();
+        $actors = $personManager->getActors();
         $genreManager = new GenreManager();
         $genres = $genreManager->getGenres();
+        $filmManager = new FilmManager();
+        $films = $filmManager->getFilms();
+        $characterManager = new CharacterManager();
+        $characters = $characterManager->getCharacters();
         require "View/Content/formList.php";
     }
     // ADD GENRE
@@ -119,8 +124,8 @@ class CinemaController {
                 ];
 
                 $contentManager = new ContentManager();
-                $addperson = $contentManager->addPerson($person);
-                header('location: index.php?action=ActorList');
+                $idfilm = $contentManager->addPerson($person);
+                header('location: index.php?action=Person&id='.$idperson);
                 exit();
             } else {
                 // header('location: ./View/Content/errorLanding.php');
@@ -155,7 +160,7 @@ class CinemaController {
                 
                 $contentManager = new ContentManager();
                 $idfilm = $contentManager->addFilm($film);
-                header('location: index.php?action=FilmDetails&id='.$idfilm);
+                header('location: index.php?action=Film&id='.$idfilm);
                 exit();
             } else {
                 // header('location: ./View/Content/errorLanding.php');

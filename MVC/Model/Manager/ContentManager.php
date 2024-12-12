@@ -29,6 +29,7 @@ class ContentManager {
             "personGenre" => $person['personGenre'],
             "birthDate" => $person['birthDate']
         ]);
+        return $pdo->lastInsertId();
     }
 
     // ADD FILM

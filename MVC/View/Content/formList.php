@@ -84,12 +84,45 @@
         <input type="text" id="poster" name="poster" placeholder="Poster URL" required>
 
         <label for="synopsis">Synopsis</label>
-        <input type="text-area" id="synopsis" name="synopsis" placeholder="Synopsis of the movie">
+        <textarea id="synopsis" name="synopsis" placeholder="Synopsis of the movie">
+        </textarea>
 
         <input type="submit" value="Submit" name="submit">
     </form>
 </div>
 <!-- Casting -->
+<br>
+<br>
+<br>
+<div class="casting-form">
+    <form method="post" action="index.php?action=addCasting">
+        <label for="actor">Actor</label>
+        <select name="actor" id="actor" size="1" required>
+            <?php foreach($actors as $actor){ ?>
+                <option value='<?= $actor['id_actor'] ?>'><?= $actor['actor'] ?></option>
+            <?php } ?>
+        </select>
+
+        <p>is playing</p>
+        <label for="character">Character</label>
+        <select name="character" id="character" size="1" required>
+            <?php foreach($characters as $character){ ?>
+                <option value='<?= $character['name'] ?>'><?= $character['name'] ?></option>
+            <?php } ?>
+        </select>
+
+        <p>in</p>
+        <label for="film">Film</label>
+        <select name="film" id="film" size="1" required>
+            <?php foreach($films as $film){ ?>
+                <option value='<?= $film['title'] ?>'><?= $film['title']?>, <?= substr($film['release_date'], 0, 4) ?></option>
+            <?php } ?>
+        </select>
+
+
+        <input type="submit" value="Submit" name="submit">
+    </form>
+</div>
 
 <?php
 
