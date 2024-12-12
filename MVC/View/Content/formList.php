@@ -2,17 +2,17 @@
 <h1 class="oswald">Add content</h1>
 
 <div class="form-list flex-row">
-    <button id="addGenre">Add Genre</button>
-    <button id="addFilm">Add Film</button>
-    <button id="addPerson">Add Person</button>
-    <button id="addCasting">Add Casting</button>
+    <button class="form-list_button" id="addGenre">Add Genre</button>
+    <button class="form-list_button" id="addFilm">Add Film</button>
+    <button class="form-list_button" id="addPerson">Add Person</button>
+    <button class="form-list_button" id="addCasting">Add Casting</button>
 
 </div>
 <br>
 <br>
 <br>
-<!-- Genre -->
-<div class="genre-form">
+
+<div class="forms hidden genre-form">
     <form method="post" action="index.php?action=addGenre">
         <label for="gname">New Genre</label>
         <input type="text" id="gname" name="gname" placeholder="Genre name" required>
@@ -23,8 +23,8 @@
 <br>
 <br>
 <br>
-<!-- Person -->
-<div class="person-form">
+
+<div class="forms hidden person-form">
     <form method="post" action="index.php?action=addPerson">
         <label for="firstname">First name</label>
         <input type="text" id="firstname" name="firstname" placeholder="First name" required>
@@ -48,8 +48,8 @@
 <br>
 <br>
 <br>
-<!-- Film -->
-<div class="film-form">
+
+<div class="forms hidden film-form">
     <form method="post" action="index.php?action=addFilm">
         <label for="title">Title</label>
         <input type="text" id="title" name="title" placeholder="Title" required>
@@ -90,11 +90,11 @@
         <input type="submit" value="Submit" name="submit">
     </form>
 </div>
-<!-- Casting -->
+
 <br>
 <br>
 <br>
-<div class="casting-form">
+<div class="forms hidden casting-form">
     <form method="post" action="index.php?action=addCasting">
         <label for="actor">Actor</label>
         <select name="actor" id="actor" size="1" required>
