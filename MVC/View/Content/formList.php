@@ -26,20 +26,43 @@
         <label for="lastname">Last name</label>
         <input type="text" id="lastname" name="lastname" placeholder="Last name" required>
 
-        <label for="persongenre">Genre</label>
-        <select name="persongenre" id="persongenre" size="1">
+        <label for="personGenre">Genre</label>
+        <select name="personGenre" id="personGenre" size="1" required>
             <option value="Male">Male</option>
             <option value="Female">Female</option>
             <option value="Other">Other</option>
         </select>
 
-        <label for="birthdate">Birthdate</label>
-        <input type="date" id="birthdate" name="birthdate">
+        <label for="birthDate">Birthdate</label>
+        <input type="date" id="birthDate" name="birthDate" required>
 
         <input type="submit" value="Submit" name="submit">
     </form>
 </div>
 <!-- Film -->
+<div class="film-form">
+    <form method="post" action="index.php?action=addFilm">
+        <label for="title">Title</label>
+        <input type="text" id="title" name="title" placeholder="Title" required>
+        
+        <label for="releaseDate">Release Date</label>
+        <input type="date" id="releaseDate" name="releaseDate" required>
+
+        <label for="duration">Duration</label>
+        <input type="date" id="duration" name="duration" required>
+
+        <label for="director">Director</label>
+        <input type="text" id="director" name="director" placeholder="Film Director" required>
+
+        <label for="poster">Poster</label>
+        <input type="text" id="poster" name="poster" placeholder="URL of the poster" required>
+
+        <label for="synopsis">Synopsis</label>
+        <input type="text-area" id="synopsis" name="synopsis" placeholder="Synopsis of the movie">
+
+        <input type="submit" value="Submit" name="submit">
+    </form>
+</div>
 <!-- Casting -->
 
 <?php

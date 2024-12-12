@@ -30,4 +30,19 @@ class ContentManager {
             "birthdate" => $person['birthdate']
         ]);
     }
+
+    // ADD FILM
+    public function addFilm($film){
+        $pdo = Connect::seConnecter();
+        $request = $pdo->prepare("
+            INSERT INTO person (id_person, last_name, first_name, sex, birth_date)
+            VALUES (DEFAULT, :lastname, :firstname, :persongenre, :birthdate)
+        ");
+        $request->execute([
+            "lastname" => $person['lastname'],
+            "firstname" => $person['firstname'],
+            "persongenre" => $person['persongenre'],
+            "birthdate" => $person['birthdate']
+        ]);
+    }
 }

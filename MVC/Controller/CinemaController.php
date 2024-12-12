@@ -76,6 +76,7 @@ class CinemaController {
 
     // ----- FORMS ------
     public function formList() {
+
         require "View/Content/formList.php";
     }
     // ADD GENRE
@@ -91,7 +92,7 @@ class CinemaController {
                 header('location: index.php?action=GenreList');
                 exit();
             } else {
-                header('location: ./View/Content/errorLanding.php');
+                // header('location: ./View/Content/errorLanding.php');
             }
         }
     }
@@ -102,16 +103,16 @@ class CinemaController {
             // Sanitize the input
             $firstname = filter_input(INPUT_POST, "firstname", FILTER_SANITIZE_SPECIAL_CHARS);
             $lastname = filter_input(INPUT_POST, "lastname", FILTER_SANITIZE_SPECIAL_CHARS);
-            $persongenre = filter_input(INPUT_POST, "persongenre", FILTER_SANITIZE_SPECIAL_CHARS);
-            $birthdate = filter_input(INPUT_POST, "birthdate", FILTER_SANITIZE_SPECIAL_CHARS);
-            var_dump($firstname, $lastname, $persongenre, $birthdate);
+            $personGenre = filter_input(INPUT_POST, "personGenre", FILTER_SANITIZE_SPECIAL_CHARS);
+            $birthDate = filter_input(INPUT_POST, "birthDate", FILTER_SANITIZE_SPECIAL_CHARS);
+            var_dump($firstname, $lastname, $personGenre, $birthDate);
 
-            if($firstname && $lastname && $persongenre && $birthdate){ // IF sanitize returns a correct variable
+            if($firstname && $lastname && $personGenre && $birthDate){ // IF sanitize returns a correct variable
                 $person = [
                     "firstname" => $firstname,
                     "lastname" => $lastname,
-                    "persongenre" => $persongenre,
-                    "birthdate" => $birthdate
+                    "personGenre" => $personGenre,
+                    "birthDate" => $birthDate
                 ];
 
                 $contentManager = new ContentManager();
@@ -119,7 +120,7 @@ class CinemaController {
                 header('location: index.php?action=ActorList');
                 exit();
             } else {
-                header('location: ./View/Content/errorLanding.php');
+                // header('location: ./View/Content/errorLanding.php');
             }
         }
     }

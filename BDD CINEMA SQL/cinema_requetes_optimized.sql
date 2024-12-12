@@ -133,7 +133,20 @@
         VALUES (DEFAULT, :genre_name);
         -- ADD PERSON
         INSERT INTO person (id_person, last_name, first_name, sex, birth_date)
-        VALUES (DEFAULT, :lastname, :firstname, :persongenre, :birthdate);
+        VALUES (DEFAULT, :lastname, :firstname, :personGenre, :birthDate);
+        -- ADD FILM
+        INSERT INTO film
+            (id_film, title, release_date, duration, synopsis, rating, poster, id_director)
+        VALUES
+	        (DEFAULT,
+            ;title,
+            :releaseDate,
+            :duration,
+            :synopsis,
+            :rating,
+            :poster,
+            :idDirector);
+	
 
 
 

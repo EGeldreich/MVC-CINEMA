@@ -35,5 +35,7 @@ if(isset($_GET["action"])){
         case "FormList" : $ctrlCinema->formList(); break;
         case "addGenre" : $ctrlCinema->addGenre(); break;
         case "addPerson" : $ctrlCinema->addPerson(); break;
+        case "addFilm" : $ctrlCinema->addFilm(); break;
+        case "addCasting" : $ctrlCinema->addCasting(); break;
     };
 };

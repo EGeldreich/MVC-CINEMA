@@ -1,0 +1,8 @@
+Comment récupérer id d'un nouvel élément de la BDD ?
+    (redirection après addPerson)
+
+Diviser le controller en plusieurs fichiers : good practice ou préférence personnelle ?
+
+Un filtreur par cas dans l'index ? Ou overkill ?
+
+Comment gérer l'ajout de personne dans les formulaires -> possibilté de 2 personnes avec le même nom
