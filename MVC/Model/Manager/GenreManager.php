@@ -19,4 +19,14 @@ class GenreManager {
         $genres = $request->fetchAll();
         return $genres;
     }
+
+    public function getGenresList(){
+        $pdo = Connect::seConnecter();
+        $request = $pdo->query("
+            SELECT genre_name
+            FROM genre
+        ");
+        $genres = $request->fetchAll(\PDO::FETCH_COLUMN);
+        return $genres;
+    }
 }

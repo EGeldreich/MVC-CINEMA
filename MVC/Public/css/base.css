@@ -36,7 +36,7 @@ html {
     font-size: 16px;
 }
 main {
-    padding-top: 48px;
+    /* padding-top: 48px; */
 }
 /* UTILITES */
 .flex-row {
@@ -64,7 +64,6 @@ header {
     width: 100;
     padding: 0 48px;
     background-color: var(--dark-color);
-    position: fixed;
 
     & .navbar {
         justify-content: space-between;

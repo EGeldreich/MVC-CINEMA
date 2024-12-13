@@ -44,23 +44,23 @@
             </div>  
 
             <div class="form-line flex-row">
-                <fieldset>
+            <fieldset>
                     <legend>Person role</legend>
                     <div class="roles-field flex-row">
-                            <div class="roles-field_roles">
-                                <input type="checkbox" class="role-checkbox" name="role" value='actor'/>
-                                <label for='actor'>Actor</label>
-                            </div>
-                            <div class="roles-field_roles">
-                                <input type="checkbox" class="role-checkbox" name="role" value='director'/>
-                                <label for='director'>Director</label>
-                            </div>
+                        <div class="roles-field_roles">
+                            <input type="checkbox" class="role-checkbox" id="actor" name="role[]" value="actor"/>
+                            <label for="actor">Actor</label>
+                        </div>
+                        <div class="roles-field_roles">
+                            <input type="checkbox" class="role-checkbox" id="director" name="role[]" value="director"/>
+                            <label for="director">Director</label>
+                        </div>
                     </div>
                 </fieldset>
             </div>
 
         </div>
-        <input type="submit" value="Add Person" name="submit">
+        <input type="submit" value="Add Person" name="submitPerson">
     </form>
 </div>
 
@@ -73,7 +73,7 @@
                 <input type="text" id="gname" name="gname" placeholder="Genre name" required>
             </div>
         </div>
-        <input type="submit" value="Add Genre" name="submit">
+        <input type="submit" value="Add Genre" name="submitGenre">
     </form>
 </div>
 
@@ -135,7 +135,7 @@
                     <div class="genres-field flex-column">
                         <?php foreach($genres as $genre){ ?>
                             <div class="genres-field_genres">
-                                <input type="checkbox" class="genre-checkbox" name="genre" value='<?= $genre['genre_name'] ?>'/>
+                                <input type="checkbox" class="genre-checkbox" name="genre[]" value='<?= $genre['genre_name'] ?>'/>
                                 <label for='genre'><?= $genre['genre_name'] ?></label>
                             </div>
                         <?php } ?>
@@ -150,7 +150,7 @@
                 </div>
             </div>
         </div>
-        <input type="submit" value="Add Film" name="submit">
+        <input type="submit" value="Add Film" name="submitFilm">
     </form>
 </div>
 
