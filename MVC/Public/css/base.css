@@ -24,9 +24,9 @@ a {
 }
 /* VARIABLES */
 :root {
-    --light-color: #f0f0f0;
-    --dark-color: #060606;
-    --grey-color: #1a1a1a;
+    --light-color: #eeeeee;
+    --dark-color: #0c0c0c;
+    --grey-color: #202020;
     --main-color: #28bd8a;
 }
 /* GENERAL */
@@ -34,6 +34,9 @@ html {
     color: var(--light-color);
     background-color: var(--dark-color);
     font-size: 16px;
+}
+main {
+    padding-top: 48px;
 }
 /* UTILITES */
 .flex-row {
@@ -61,6 +64,8 @@ header {
     width: 100;
     padding: 0 48px;
     background-color: var(--dark-color);
+    position: fixed;
+
     & .navbar {
         justify-content: space-between;
         align-items: center;

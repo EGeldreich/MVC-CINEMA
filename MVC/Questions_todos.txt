@@ -1,0 +1,9 @@
+QUESTIONS
+
+Diviser le controller en plusieurs fichiers : good practice ou préférence personnelle ?
+
+Un filtreur par cas dans l'index ? Ou overkill ?
+
+TODOS
+
+Rework person adder with actor and director checkboxes

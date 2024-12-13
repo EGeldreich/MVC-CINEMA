@@ -1,26 +1,138 @@
-.hidden {
-    display: none;
-}
+/* FROMS NAVBAR */
 .form-list {
     margin-top: 1rem;
     width: 100%;
     font-weight: 500;
-    font-size: 1.5rem;
-
-    & .form-list_button:nth-child(1) {
-        border-left: none;
-    }
+    font-size: 1.5em;
 
     & .form-list_button {
+        padding-bottom: 8px;
+        opacity: 0.5;
         flex: 1;
         cursor: pointer;
-        /* border-bottom: 1px solid var(--light-color); */
-        border-left: 1px solid var(--light-color);
+        border-bottom: 1px solid var(--light-color);
         transition: all 0.3s ease;
 
         &:hover {
-            color: var(--dark-color);
-            background-color: var(--light-color);
+            opacity: 0.8;
+        }
+
+        &.active {
+            opacity: 1;
         }
     }
+}
+
+/* FORMS */
+.forms {
+    width: calc(100% - (3rem * 2));
+    margin: 6rem auto 0;
+
+    & .form {
+        gap: 3rem;
+        justify-content: center;
+        align-items: center;
+
+        & .form-block-line {
+            gap: 7rem;
+            width: 100%;
+        }
+
+        & .form-block {
+            gap: 1.5rem;
+            flex: 1;
+            align-items: center;
+            width: 100%;
+
+            & .form-line {
+                gap: 1.5rem;
+                align-items: flex-end;
+                width: 100%;
+            }
+
+            & .input-and-label {
+                width: 100%;
+            }
+        }
+
+        & input[type="text"],
+        select,
+        input[type="date"] {
+            width: 100%;
+            height: 2rem;
+            padding-left: 1rem;
+
+            &.input_half-size {
+                width: calc((20rem / 2) - (1.5rem / 2));
+            }
+            &::placeholder {
+                color: var(--grey-color);
+                font-size: 1em;
+                opacity: 0.5;
+            }
+        }
+
+        & textarea {
+            width: 100%;
+            height: 20rem;
+        }
+
+        & fieldset {
+            border-radius: 1rem;
+            padding: 1rem;
+            width: 100%;
+
+            & .roles-field {
+                width: 100%;
+                justify-content: space-evenly;
+            }
+            & .genres-field {
+                height: 20rem;
+                flex-wrap: wrap;
+                justify-content: space-evenly;
+                gap: 1rem;
+
+                & .genres-field_genres {
+                    width: 50%;
+                    padding: 0;
+                }
+            }
+        }
+
+        & input[type="submit"] {
+            width: 16rem;
+            height: 2rem;
+            background-color: var(--main-color);
+            color: var(--dark-color);
+            font-size: 1.2rem;
+            font-weight: medium;
+            border: none;
+            cursor: pointer;
+            transition: all 0.2s ease-in-out;
+
+            &:hover {
+                transform: scale(1.05);
+            }
+        }
+    }
+
+    p {
+        white-space: nowrap;
+    }
+    &.hidden {
+        display: none;
+    }
+}
+.person-form {
+    width: 42rem;
+}
+.genre-form {
+    width: 20rem;
+}
+
+.character-form {
+    width: 20rem;
+}
+.casting-form {
+    width: 80rem;
 }
