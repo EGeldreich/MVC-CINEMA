@@ -13,6 +13,21 @@ use Model\Manager\GenreManager;
 
 // Create CinemaController Class
 class CinemaController {
+    // HOME
+    public function home() {
+        $filmManager = new FilmManager();
+        $films = $filmManager->getFilms();
+
+        $genreManager = new GenreManager();
+        $genres = $genreManager->getGenres();
+
+        $actorManager = new PersonManager();
+        $actors = $actorManager->getActors();
+
+        $directorManager = new PersonManager();
+        $directors = $directorManager->getDirectors();
+        require "View/Film/home.php";
+    }
     // ----- LISTS -----
     // FILM LIST
     public function filmList() {

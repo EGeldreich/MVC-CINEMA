@@ -10,3 +10,6 @@ ERROR PAGE
     missing_fields
     invalid_date
     bad_input
+
+Ajouter img a genre et characters
+changer les formulaires qui leur sont lié

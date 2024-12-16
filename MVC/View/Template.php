@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="./Public/css/base.css">
     <link rel="stylesheet" href="./Public/css/forms.css">
     <link rel="stylesheet" href="./Public/css/lists.css">
+    <link rel="stylesheet" href="./Public/css/home.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,7 +19,7 @@
     <title><?= $title ?></title>
 </head>
 <body>
-    <header>
+    <header class="container">
             <nav class="navbar flex-row raleway">
                 <div class="navbar_left flex-row">
                     <a href="index.php" class="logo oswald">The Movie <span class="main-color">Hub</span></a>

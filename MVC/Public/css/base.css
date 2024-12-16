@@ -38,11 +38,11 @@ html {
     background-color: var(--dark-color);
     font-size: 16px;
 }
-body {
+/* UTILITES */
+.container {
     width: calc(100% - (3rem * 2));
     margin: 0 auto;
 }
-/* UTILITES */
 .flex-row {
     display: flex;
 }

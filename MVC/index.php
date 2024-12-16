@@ -47,4 +47,6 @@ if(isset($_GET["action"])){
         case "EditFilm" : $ctrlContentEdit->editFilm($id); break;
         case "EditCasting" : $ctrlContentEdit->editCasting($id); break;
     };
+} else {
+    $ctrlCinema->home();
 };
