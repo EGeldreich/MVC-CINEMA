@@ -1,0 +1,60 @@
+/* FILM LIST --------------------------------------- */
+.page-list {
+    width: 100%;
+    gap: 1.5rem;
+
+    & .card {
+        background-color: var(--light-color);
+        color: var(--dark-color);
+        padding: 1rem;
+        gap: 1.5rem;
+        border-radius: 10px;
+        width: 100%;
+        border: none;
+        transition: 0.2s all ease-in-out;
+
+        & .card_img {
+            width: 196px;
+            height: 176px;
+            border-radius: 10px;
+        }
+
+        & .card_info {
+            justify-content: space-between;
+            width: 100%;
+
+            & .card_first-line {
+                justify-content: space-between;
+
+                & .card_title {
+                    font-size: 2em;
+                    font-weight: 500;
+                }
+
+                & .card_stats {
+                    font-size: 1.2em;
+                    gap: 2rem;
+                    font-weight: 200;
+                    justify-content: center;
+
+                    & .rating {
+                        font-weight: 400;
+                    }
+                }
+            }
+            & .card_last-line {
+                gap: 1.5rem;
+                font-size: 1.2em;
+                font-weight: 200;
+
+                & .card_director {
+                    font-weight: 400;
+                }
+            }
+        }
+
+        &:hover {
+            border-bottom: 3px solid var(--main-color);
+        }
+    }
+}

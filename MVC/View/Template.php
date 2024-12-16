@@ -6,6 +6,7 @@
 
     <link rel="stylesheet" href="./Public/css/base.css">
     <link rel="stylesheet" href="./Public/css/forms.css">
+    <link rel="stylesheet" href="./Public/css/lists.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

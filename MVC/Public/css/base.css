@@ -21,6 +21,8 @@ button {
 }
 a {
     color: inherit;
+    font-size: inherit;
+    font-weight: inherit;
 }
 /* VARIABLES */
 :root {
@@ -36,9 +38,10 @@ html {
     background-color: var(--dark-color);
     font-size: 16px;
 }
-/* main {
-    padding-top: 48px;
-} */
+body {
+    width: calc(100% - (3rem * 2));
+    margin: 0 auto;
+}
 /* UTILITES */
 .flex-row {
     display: flex;
@@ -63,7 +66,6 @@ html {
 header {
     height: 48px;
     width: 100;
-    padding: 0 48px;
     background-color: var(--dark-color);
 
     & .navbar {

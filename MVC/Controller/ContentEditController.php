@@ -57,17 +57,17 @@ class ContentEditController {
                     "birthDate" => $birthDate,
                     "id" => $id
                 ];
-
+                // Edit the values
                 $editManager = new EditManager();
                 $idperson = $editManager->editPerson($person);
 
+                // Calls everything needed for the Person Details page
                 $personManager = new PersonManager();
                 $isActor = $personManager->getisActor($id);
                 $isDirector = $personManager->getisDirector($id);
                 $played = $personManager->getPlayed($id);
                 $person = $personManager->getPerson($id);
                 $directed = $personManager->getDirected($id);
-
 
                 header('location: index.php?action=Person&id='.$idperson);
                 exit();

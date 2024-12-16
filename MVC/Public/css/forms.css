@@ -25,7 +25,7 @@
 
 /* FORMS */
 .forms {
-    width: calc(100% - (3rem * 2));
+    width: 100%;
     margin: 6rem auto 0;
     & .edit-form {
         gap: 3rem;

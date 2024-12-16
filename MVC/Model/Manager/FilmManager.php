@@ -15,7 +15,7 @@ class FilmManager {
                 f.title,
                 f.release_date,
                 f.rating,
-                f.duration,
+                f.duration AS duration,
                 f.synopsis,
                 CONCAT(p.first_name, ' ', p.last_name) AS director
             FROM film f
@@ -30,8 +30,19 @@ class FilmManager {
     public function getFilms(){
         $pdo = Connect::seConnecter();
         $request = $pdo->query("
-            SELECT id_film, title, release_date, rating
-            FROM film
+            SELECT
+                f.id_film,
+                f.title,
+                f.release_date,
+                f.rating,
+                DATE_FORMAT(SEC_TO_TIME(f.duration * 60), '%H:%i') AS duration,
+                f.synopsis,
+                f.poster,
+                CONCAT(p.first_name, ' ', p.last_name) AS director,
+                p.id_person
+            FROM film f
+            INNER JOIN director d ON f.id_director = d.id_director
+            INNER JOIN person p ON d.id_person = p.id_person
             ORDER BY rating DESC;
         ");
         $films = $request->fetchAll();
