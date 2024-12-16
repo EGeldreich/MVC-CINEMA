@@ -32,19 +32,15 @@ class ContentEditController {
     }
 
     // EDIT PERSON
-    public function editPerson() {
+    public function editPerson($id) {
         // Check if the form has been correctly submitted
         if(isset($_POST['editPerson'])){
 
             // Sanitize the input
-            $firstname = filter_input(INPUT_POST, "firstname", FILTER_SANITIZE_SPECIAL_CHARS);
-            $lastname = filter_input(INPUT_POST, "lastname", FILTER_SANITIZE_SPECIAL_CHARS);
+            $firstname = filter_input(INPUT_POST, "firstName", FILTER_SANITIZE_SPECIAL_CHARS);
+            $lastname = filter_input(INPUT_POST, "lastName", FILTER_SANITIZE_SPECIAL_CHARS);
             $personGenre = filter_input(INPUT_POST, "personGenre", FILTER_SANITIZE_SPECIAL_CHARS);
             $birthDate = filter_input(INPUT_POST, "birthDate", FILTER_SANITIZE_SPECIAL_CHARS);
-
-            $allowedRoles = ['actor', 'director'];
-            $submittedRoles = filter_input(INPUT_POST, 'role', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY) ?? [];
-            $roles = array_intersect($submittedRoles, $allowedRoles);
             
             // Validate date format
             if (!preg_match("/^\d{4}-\d{2}-\d{2}$/", $birthDate)) {
@@ -53,17 +49,26 @@ class ContentEditController {
                 exit();
             }
 
-            if($firstname && $lastname && $personGenre && $birthDate && $roles){ // IF sanitize returns a correct variable
+            if($firstname && $lastname && $personGenre && $birthDate){ // IF sanitize returns a correct variable
                 $person = [
                     "firstname" => $firstname,
                     "lastname" => $lastname,
                     "personGenre" => $personGenre,
                     "birthDate" => $birthDate,
-                    "roles" => $roles
+                    "id" => $id
                 ];
 
-                $addManager = new AddManager();
-                $idperson = $addManager->addPerson($person);
+                $editManager = new EditManager();
+                $idperson = $editManager->editPerson($person);
+
+                $personManager = new PersonManager();
+                $isActor = $personManager->getisActor($id);
+                $isDirector = $personManager->getisDirector($id);
+                $played = $personManager->getPlayed($id);
+                $person = $personManager->getPerson($id);
+                $directed = $personManager->getDirected($id);
+
+
                 header('location: index.php?action=Person&id='.$idperson);
                 exit();
             } else {

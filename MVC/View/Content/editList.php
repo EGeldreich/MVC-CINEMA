@@ -14,7 +14,7 @@
     <ol class="edit-person_list edit-form flex-column">
         <?php foreach($persons as $person){ ?>
             <li class="form person-entry flex-column">
-                <form class="edit-form_entry" action='index.php?action=editPerson&id=<?= ($person['id_person']) ?>'>
+                <form class="edit-form_entry" method="post" action='index.php?action=EditPerson&id=<?= ($person['id_person']) ?>'>
                     <div class="form-line flex-row">
                         <div class="input-and-label flex-column">
                             <label for="firstName">First Name</label>
@@ -60,7 +60,7 @@
     <ol class="edit-genre_list edit-form flex-column">
         <?php foreach($genres as $genre){ ?>
             <li class="form genre-entry flex-column">
-                <form class="edit-form_entry" action='index.php?action=editGenre&id=<?= ($genre['id_genre']) ?>'>
+                <form class="edit-form_entry" method="post" action='index.php?action=EditGenre&id=<?= ($genre['id_genre']) ?>'>
                     <div class="form-line flex-row">
                         <div class="input-and-label flex-column">
                             <label for="genreName">Genre Name</label>

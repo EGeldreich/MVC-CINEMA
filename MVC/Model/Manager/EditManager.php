@@ -16,34 +16,27 @@ class EditManager {
         $request->execute(["genreName" => $genreName]);
     }
 
-    // // ADD PERSON
-    // public function addPerson($person) {
-    //     $pdo = Connect::seConnecter();
-    //     // Create new person
-    //     $request = $pdo->prepare("
-    //         INSERT INTO person (last_name, first_name, sex, birth_date)
-    //         VALUES (:lastname, :firstname, :personGenre, :birthDate)
-    //     ");
-    //     $request->execute([
-    //         "lastname" => $person['lastname'],
-    //         "firstname" => $person['firstname'],
-    //         "personGenre" => $person['personGenre'],
-    //         "birthDate" => $person['birthDate']
-    //     ]);
+    // EDIT PERSON
+    public function editPerson($person) {
+        $pdo = Connect::seConnecter();
+        // Create new person
+        $request = $pdo->prepare("
+            UPDATE person
+            SET 
+                last_name = :lastname,
+                first_name = :firstname,
+                sex = :personGenre,
+                birth_date = :birthDate
+            WHERE id_person = :id_person;
+        ");
+        $request->execute([
+            "lastname" => $person['lastname'],
+            "firstname" => $person['firstname'],
+            "personGenre" => $person['personGenre'],
+            "birthDate" => $person['birthDate'],
+            "id_person" => $person['id']
+        ]);
     
-    //     $lastPersonId = $pdo->lastInsertId();
-
-    //     // Create new roles for that person
-    
-    //     foreach ($person['roles'] as $role) {
-    //         // set $table according to roles content
-    //         $table = $role === 'actor' ? 'actor' : 'director';
-            
-    //         $sql = "INSERT INTO $table (id_person) VALUES (:lastpersonid)";
-    //         $roleRequest = $pdo->prepare($sql);
-    //         $roleRequest->execute(["lastpersonid" => $lastPersonId]);
-    //     }
-    
-    //     return $lastPersonId;
-    // }
+        return $person['id'];
+    }
 }

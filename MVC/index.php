@@ -42,9 +42,9 @@ if(isset($_GET["action"])){
         case "AddCasting" : $ctrlContentAdd->addCasting(); break;
 
         case "EditList" : $ctrlContentEdit->editList(); break;
-        case "EditPerson" : $ctrlContentEdit->editPerson(); break;
-        case "EditGenre" : $ctrlContentEdit->editGenre(); break;
-        case "EditFilm" : $ctrlContentEdit->editFilm(); break;
-        case "EditCasting" : $ctrlContentEdit->editCasting(); break;
+        case "EditPerson" : $ctrlContentEdit->editPerson($id); break;
+        case "EditGenre" : $ctrlContentEdit->editGenre($id); break;
+        case "EditFilm" : $ctrlContentEdit->editFilm($id); break;
+        case "EditCasting" : $ctrlContentEdit->editCasting($id); break;
     };
 };
