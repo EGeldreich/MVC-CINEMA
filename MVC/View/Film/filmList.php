@@ -1,6 +1,6 @@
 <?php ob_start(); ?>
 <div class="page-header ">
-    <h1 class="oswald">All our movies</h1>
+    <h1 class="oswald">All our <span class="main-color">movies</span></h1>
 
 </div>
 

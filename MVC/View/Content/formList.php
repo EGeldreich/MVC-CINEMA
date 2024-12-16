@@ -44,6 +44,13 @@
             </div>  
 
             <div class="form-line flex-row">
+                <div class="input-and-label flex-column">
+                    <label for="picture">Picture URL</label>
+                    <input type="text" id="picture" name="picture" placeholder="Picture URL" required>
+                </div>
+            </div>
+
+            <div class="form-line flex-row">
             <fieldset>
                     <legend>Person role</legend>
                     <div class="roles-field flex-row">

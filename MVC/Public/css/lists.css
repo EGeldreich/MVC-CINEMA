@@ -4,13 +4,12 @@
     gap: 1.5rem;
 
     & .card {
+        width: 100%;
         background-color: var(--light-color);
         color: var(--dark-color);
         padding: 1rem;
-        gap: 1.5rem;
         border-radius: 10px;
-        width: 100%;
-        border: none;
+        gap: 1.5rem;
         transition: 0.2s all ease-in-out;
 
         & .card_img {
@@ -54,7 +53,7 @@
         }
 
         &:hover {
-            border-bottom: 3px solid var(--main-color);
+            background-color: var(--main-color);
         }
     }
 }

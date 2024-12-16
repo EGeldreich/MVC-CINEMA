@@ -16,7 +16,8 @@ class PersonManager {
                 p.last_name,
                 p.sex,
                 p.birth_date,
-                p.id_person
+                p.id_person,
+                p.picture
             FROM person p
             ORDER BY p.last_name;
         ");
@@ -70,7 +71,8 @@ class PersonManager {
             SELECT 
                 CONCAT(p.first_name, ' ', p.last_name) AS person,
                 p.sex,
-                p.birth_date
+                p.birth_date,
+                p.picture
             FROM person p
             WHERE p.id_person = :id;
         ");

@@ -54,6 +54,7 @@ class ContentAddController {
             $lastname = filter_input(INPUT_POST, "lastname", FILTER_SANITIZE_SPECIAL_CHARS);
             $personGenre = filter_input(INPUT_POST, "personGenre", FILTER_SANITIZE_SPECIAL_CHARS);
             $birthDate = filter_input(INPUT_POST, "birthDate", FILTER_SANITIZE_SPECIAL_CHARS);
+            $picture = filter_input(INPUT_POST, "picture", FILTER_SANITIZE_SPECIAL_CHARS);
 
             $allowedRoles = ['actor', 'director'];
             $submittedRoles = filter_input(INPUT_POST, 'role', FILTER_DEFAULT, FILTER_REQUIRE_ARRAY) ?? [];
@@ -66,12 +67,13 @@ class ContentAddController {
                 exit();
             }
 
-            if($firstname && $lastname && $personGenre && $birthDate && $roles){ // IF sanitize returns a correct variable
+            if($firstname && $lastname && $personGenre && $birthDate && $roles && $picture){ // IF sanitize returns a correct variable
                 $person = [
                     "firstname" => $firstname,
                     "lastname" => $lastname,
                     "personGenre" => $personGenre,
                     "birthDate" => $birthDate,
+                    "picture" => $picture,
                     "roles" => $roles
                 ];
 
