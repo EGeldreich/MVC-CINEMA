@@ -6,7 +6,6 @@ Un filtreur par cas dans l'index ? Ou overkill ?
 
 TODOS
 
-
 ERROR PAGE
     missing_fields
     invalid_date

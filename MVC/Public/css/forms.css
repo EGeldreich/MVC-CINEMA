@@ -27,7 +27,13 @@
 .forms {
     width: calc(100% - (3rem * 2));
     margin: 6rem auto 0;
+    & .edit-form {
+        gap: 3rem;
 
+        & .edit-form_entry {
+            width: 100%;
+        }
+    }
     & .form {
         gap: 3rem;
         justify-content: center;
@@ -43,16 +49,16 @@
             flex: 1;
             align-items: center;
             width: 100%;
+        }
 
-            & .form-line {
-                gap: 1.5rem;
-                align-items: flex-end;
-                width: 100%;
-            }
+        & .form-line {
+            gap: 1.5rem;
+            align-items: flex-end;
+            width: 100%;
+        }
 
-            & .input-and-label {
-                width: 100%;
-            }
+        & .input-and-label {
+            width: 100%;
         }
 
         & input[type="text"],
@@ -100,6 +106,7 @@
         }
 
         & input[type="submit"] {
+            padding: 0 2rem;
             width: 16rem;
             height: 2rem;
             background-color: var(--main-color);

@@ -1,6 +1,8 @@
 <?php
 
 use Controller\CinemaController;
+use Controller\ContentAddController;
+use Controller\ContentEditController;
 
 spl_autoload_register(function($class_name) {
     // Convert namespace separators to directory separators
@@ -16,6 +18,8 @@ spl_autoload_register(function($class_name) {
 });
 
 $ctrlCinema = new CinemaController();
+$ctrlContentAdd = new ContentAddController();
+$ctrlContentEdit = new ContentEditController();
 
 $id = (isset($_GET["id"])) ? $_GET["id"] : NULL;
 
@@ -31,10 +35,12 @@ if(isset($_GET["action"])){
         case "CharacterList" : $ctrlCinema->characterList(); break;
         case "Character" : $ctrlCinema->characterDetails($id); break;
 
-        case "FormList" : $ctrlCinema->formList(); break;
-        case "addGenre" : $ctrlCinema->addGenre(); break;
-        case "addPerson" : $ctrlCinema->addPerson(); break;
-        case "addFilm" : $ctrlCinema->addFilm(); break;
-        case "addCasting" : $ctrlCinema->addCasting(); break;
+        case "FormList" : $ctrlContentAdd->formList(); break;
+        case "addGenre" : $ctrlContentAdd->addGenre(); break;
+        case "addPerson" : $ctrlContentAdd->addPerson(); break;
+        case "addFilm" : $ctrlContentAdd->addFilm(); break;
+        case "addCasting" : $ctrlContentAdd->addCasting(); break;
+
+        case "EditList" : $ctrlContentEdit->editList(); break;
     };
 };

@@ -7,6 +7,34 @@ use Model\Connect;
 // Handle all queries related to persons
 class PersonManager {
 
+    // Get all informations
+    public function getAllInfoPersons(){
+        $pdo = Connect::seConnecter();
+        $request = $pdo->query("
+            SELECT
+                p.first_name,
+                p.last_name,
+                p.sex,
+                p.birth_date,
+                p.id_person
+            FROM person p
+            ORDER BY p.last_name;
+        ");
+        $persons = $request->fetchAll();
+        return $persons;
+    }
+
+    // Get the list of all persons and their birthdate
+    public function getPersons(){
+        $pdo = Connect::seConnecter();
+        $request = $pdo->query("
+            SELECT CONCAT(p.first_name, ' ', p.last_name) AS person, p.birth_date
+            FROM person p;
+        ");
+        $persons = $request->fetchAll();
+        return $persons;
+    }
+
     // Get the list of directors and return it as $directors
     public function getDirectors(){
         $pdo = Connect::seConnecter();
@@ -33,17 +61,6 @@ class PersonManager {
         ");
         $actors = $request->fetchAll();
         return $actors;
-    }
-
-    // Get the list of all persons and their birthdate
-    public function getPersons(){
-        $pdo = Connect::seConnecter();
-        $request = $pdo->query("
-            SELECT CONCAT(p.first_name, ' ', p.last_name) AS person, p.birth_date
-            FROM person p;
-        ");
-        $persons = $request->fetchAll();
-        return $persons;
     }
 
     // Get the details about a specified person

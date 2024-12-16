@@ -212,7 +212,7 @@
 
 <?php
 
-    $title = "TMH - Genres";
+    $title = "TMH - Add Content";
     $content = ob_get_clean();
     require_once "View/template.php";
     

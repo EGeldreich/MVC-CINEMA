@@ -6,6 +6,26 @@ use Model\Connect;
 
 class FilmManager {
 
+    // Get all informations about all films
+    public function getAllInfoFilms(){
+        $pdo = Connect::seConnecter();
+        $request = $pdo->query("
+            SELECT 
+                f.id_film,
+                f.title,
+                f.release_date,
+                f.rating,
+                f.duration,
+                f.synopsis,
+                CONCAT(p.first_name, ' ', p.last_name) AS director
+            FROM film f
+                INNER JOIN director d ON f.id_director = d.id_director
+                INNER JOIN person p ON d.id_person = p.id_person
+        ");
+        $films = $request->fetchAll();
+        return $films;
+    }
+
     // Get list of films, return it as $films
     public function getFilms(){
         $pdo = Connect::seConnecter();
@@ -30,8 +50,6 @@ class FilmManager {
                 DATE_FORMAT(SEC_TO_TIME(f.duration * 60), '%H:%i') AS duration,
                 f.synopsis
             FROM film f
-                INNER JOIN director d ON f.id_director = d.id_director
-                INNER JOIN person p ON d.id_person = p.id_person
             WHERE f.id_film = :id;
         ");
         $request->execute(['id' => $id]);
