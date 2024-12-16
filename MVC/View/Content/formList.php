@@ -2,16 +2,16 @@
 <h1 class="oswald">Add content</h1>
 
 <div class="form-list flex-row">
-    <button class="active form-list_button" id="addPerson">Add Person</button>
-    <button class="form-list_button" id="addGenre">Add Genre</button>
-    <button class="form-list_button" id="addFilm">Add Film</button>
-    <button class="form-list_button" id="addCharacter">Add Character</button>
-    <button class="form-list_button" id="addCasting">Add Casting</button>
+    <button class="active form-list_button" id="person">Add Person</button>
+    <button class="form-list_button" id="genre">Add Genre</button>
+    <button class="form-list_button" id="film">Add Film</button>
+    <button class="form-list_button" id="character">Add Character</button>
+    <button class="form-list_button" id="casting">Add Casting</button>
 
 </div>
 
 <!-- PERSON -->
-<div class="forms person-form raleway">
+<div class="forms person-form person-form_container raleway">
     <form class="form flex-column" method="post" action="index.php?action=addPerson">
         <div class="form-block flex-column">
 
@@ -65,7 +65,7 @@
 </div>
 
 <!-- GENRE -->
-<div class="forms hidden genre-form raleway">
+<div class="forms hidden genre-form genre-form_container raleway">
     <form class="form flex-column" method="post" action="index.php?action=addGenre">
     <div class="form-block flex-column">   
         <div class="input-and-label flex-column">
@@ -78,7 +78,7 @@
 </div>
 
 <!-- FILM -->
-<div class="forms hidden film-form raleway">
+<div class="forms hidden film-form film-form_container raleway">
     <form class="form flex-column" method="post" action="index.php?action=addFilm">
         <div class="form-block-line flex-row">
             <div class="form-block flex-column"> 
@@ -155,7 +155,7 @@
 </div>
 
 <!-- CHARACTER -->
-<div class="forms hidden character-form raleway">
+<div class="forms hidden character-form character-form_container raleway">
     <form class="form flex-column" method="post" action="index.php?action=addCharacter">
         <div class="form-block flex-column">   
             <div class="input-and-label flex-column">
@@ -168,7 +168,7 @@
 </div>
 
 <!-- CASTING -->
-<div class="forms hidden casting-form raleway">
+<div class="forms hidden casting-form casting-form_container raleway">
     <form class="flex-column form" method="post" action="index.php?action=addCasting">
         <div class="form-block flex-column">
 

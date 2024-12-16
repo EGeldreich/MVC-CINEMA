@@ -1,16 +1,16 @@
 <?php ob_start(); ?>
-<h1 class="oswald">Add content</h1>
+<h1 class="oswald">Edit content</h1>
 
 <div class="form-list flex-row">
-    <button class="active form-list_button" id="editPerson">Edit Person</button>
-    <button class="form-list_button" id="editGenre">Edit Genre</button>
-    <button class="form-list_button" id="editFilm">Edit Film</button>
-    <button class="form-list_button" id="editCharacter">Edit Character</button>
-    <button class="form-list_button" id="editCasting">Edit Casting</button>
+    <button class="active form-list_button" id="person">Edit Person</button>
+    <button class="form-list_button" id="genre">Edit Genre</button>
+    <button class="form-list_button" id="film">Edit Film</button>
+    <button class="form-list_button" id="character">Edit Character</button>
+    <button class="form-list_button" id="casting">Edit Casting</button>
 </div>
 
 <!-- PERSONS -->
- <div class="edit-person forms">
+ <div class="person-form person-edit_container forms">
     <ol class="edit-person_list edit-form flex-column">
         <?php foreach($persons as $person){ ?>
             <li class="form person-entry flex-column">
@@ -47,12 +47,35 @@
                         </div>
 
                         <input type="submit" value="Edit Person" name="editPerson">
+                        <input class="del-btn" type="submit" value="Delete" name="delPerson">
                     </div>
                 </form>
             </li>
         <?php } ?>
     </ol>
  </div>
+
+ <!-- GENRES -->
+ <div class="genre-form genre-edit_container forms">
+    <ol class="edit-genre_list edit-form flex-column">
+        <?php foreach($genres as $genre){ ?>
+            <li class="form genre-entry flex-column">
+                <form class="edit-form_entry" action='index.php?action=editGenre&id=<?= ($genre['id_genre']) ?>'>
+                    <div class="form-line flex-row">
+                        <div class="input-and-label flex-column">
+                            <label for="genreName">Genre Name</label>
+                            <input type="text" id="genreName" name="genreName" value='<?= $genre['genre_name'] ?>' required>
+                        </div>
+
+                        <input type="submit" value="Edit Genre" name="editGenre">
+                        <input class="del-btn" type="submit" value="Delete" name="delGenre">
+                    </div>
+                </form>
+            </li>
+        <?php } ?>
+    </ol>
+ </div>
+
 
 <?php
 

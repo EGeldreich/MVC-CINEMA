@@ -23,7 +23,7 @@ class ContentEditController {
         $films = $filmManager->getAllInfoFilms();
 
         $genreManager = new GenreManager();
-        $genres = $genreManager->getGenresList();
+        $genres = $genreManager->getAllInfoGenres();
 
         $characterManager = new CharacterManager();
         $characters = $characterManager->getCharacters();
