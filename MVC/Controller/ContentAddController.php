@@ -10,7 +10,7 @@ use Model\Manager\FilmManager;
 use Model\Manager\PersonManager;
 use Model\Manager\CharacterManager;
 use Model\Manager\GenreManager;
-use Model\Manager\ContentManager;
+use Model\Manager\AddManager;
 
 class ContentAddController {
 // ----- FORMS ------
@@ -34,8 +34,8 @@ class ContentAddController {
             $genreName = filter_input(INPUT_POST, "gname", FILTER_SANITIZE_SPECIAL_CHARS);
 
             if($genreName){ // IF sanitize returns a correct variable
-                $contentManager = new ContentManager();
-                $addGenre = $contentManager->addGenre($genreName);
+                $addManager = new AddManager();
+                $addGenre = $addManager->addGenre($genreName);
                 header('location: index.php?action=GenreList');
                 exit();
             } else {
@@ -75,8 +75,8 @@ class ContentAddController {
                     "roles" => $roles
                 ];
 
-                $contentManager = new ContentManager();
-                $idperson = $contentManager->addPerson($person);
+                $addManager = new AddManager();
+                $idperson = $addManager->addPerson($person);
                 header('location: index.php?action=Person&id='.$idperson);
                 exit();
             } else {
@@ -124,8 +124,8 @@ class ContentAddController {
                     "genres" => $genres
                 ];
                 
-                $contentManager = new ContentManager();
-                $idfilm = $contentManager->addFilm($film);
+                $addManager = new AddManager();
+                $idfilm = $addManager->addFilm($film);
                 header('location: index.php?action=Film&id='.$idfilm);
                 exit();
 

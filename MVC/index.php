@@ -36,11 +36,15 @@ if(isset($_GET["action"])){
         case "Character" : $ctrlCinema->characterDetails($id); break;
 
         case "FormList" : $ctrlContentAdd->formList(); break;
-        case "addGenre" : $ctrlContentAdd->addGenre(); break;
-        case "addPerson" : $ctrlContentAdd->addPerson(); break;
-        case "addFilm" : $ctrlContentAdd->addFilm(); break;
-        case "addCasting" : $ctrlContentAdd->addCasting(); break;
+        case "AddPerson" : $ctrlContentAdd->addPerson(); break;
+        case "AddGenre" : $ctrlContentAdd->addGenre(); break;
+        case "AddFilm" : $ctrlContentAdd->addFilm(); break;
+        case "AddCasting" : $ctrlContentAdd->addCasting(); break;
 
         case "EditList" : $ctrlContentEdit->editList(); break;
+        case "EditPerson" : $ctrlContentEdit->editPerson(); break;
+        case "EditGenre" : $ctrlContentEdit->editGenre(); break;
+        case "EditFilm" : $ctrlContentEdit->editFilm(); break;
+        case "EditCasting" : $ctrlContentEdit->editCasting(); break;
     };
 };

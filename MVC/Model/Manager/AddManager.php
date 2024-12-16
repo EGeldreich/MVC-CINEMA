@@ -4,7 +4,7 @@
 namespace Model\Manager;
 use Model\Connect;
 
-class ContentManager {
+class AddManager {
 
     // Add NEW GENRE
     public function addGenre($genreName){

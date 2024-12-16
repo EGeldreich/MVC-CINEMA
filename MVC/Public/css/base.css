@@ -36,9 +36,9 @@ html {
     background-color: var(--dark-color);
     font-size: 16px;
 }
-main {
-    /* padding-top: 48px; */
-}
+/* main {
+    padding-top: 48px;
+} */
 /* UTILITES */
 .flex-row {
     display: flex;

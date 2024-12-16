@@ -12,7 +12,7 @@
 
 <!-- PERSON -->
 <div class="forms person-form person-form_container raleway">
-    <form class="form flex-column" method="post" action="index.php?action=addPerson">
+    <form class="form flex-column" method="post" action="index.php?action=AddPerson">
         <div class="form-block flex-column">
 
             <div class="form-line flex-row">
@@ -66,7 +66,7 @@
 
 <!-- GENRE -->
 <div class="forms hidden genre-form genre-form_container raleway">
-    <form class="form flex-column" method="post" action="index.php?action=addGenre">
+    <form class="form flex-column" method="post" action="index.php?action=AddGenre">
     <div class="form-block flex-column">   
         <div class="input-and-label flex-column">
                 <label for="gname">New Genre</label>
@@ -79,7 +79,7 @@
 
 <!-- FILM -->
 <div class="forms hidden film-form film-form_container raleway">
-    <form class="form flex-column" method="post" action="index.php?action=addFilm">
+    <form class="form flex-column" method="post" action="index.php?action=AddFilm">
         <div class="form-block-line flex-row">
             <div class="form-block flex-column"> 
     
@@ -156,7 +156,7 @@
 
 <!-- CHARACTER -->
 <div class="forms hidden character-form character-form_container raleway">
-    <form class="form flex-column" method="post" action="index.php?action=addCharacter">
+    <form class="form flex-column" method="post" action="index.php?action=AddCharacter">
         <div class="form-block flex-column">   
             <div class="input-and-label flex-column">
                 <label for="cname">New Character</label>
@@ -169,7 +169,7 @@
 
 <!-- CASTING -->
 <div class="forms hidden casting-form casting-form_container raleway">
-    <form class="flex-column form" method="post" action="index.php?action=addCasting">
+    <form class="flex-column form" method="post" action="index.php?action=AddCasting">
         <div class="form-block flex-column">
 
             <div class="form-line flex-row">

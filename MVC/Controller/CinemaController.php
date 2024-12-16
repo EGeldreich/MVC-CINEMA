@@ -10,7 +10,6 @@ use Model\Manager\FilmManager;
 use Model\Manager\PersonManager;
 use Model\Manager\CharacterManager;
 use Model\Manager\GenreManager;
-use Model\Manager\ContentManager;
 
 // Create CinemaController Class
 class CinemaController {
