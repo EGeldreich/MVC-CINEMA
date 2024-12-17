@@ -14,9 +14,10 @@ use Model\Manager\GenreManager;
 // Create CinemaController Class
 class CinemaController {
     // HOME
-    public function home() {
+    public function home($specifiedDirector) {
         $filmManager = new FilmManager();
         $films = $filmManager->getFilms();
+        $filmsDirector = $filmManager->getFilmsDirector($specifiedDirector);
 
         $genreManager = new GenreManager();
         $genres = $genreManager->getGenres();
@@ -65,7 +66,7 @@ class CinemaController {
         $filmManager = new FilmManager();
         $film = $filmManager->getFilm($id);
         $castings = $filmManager->getCastings($id);
-        $directors = $filmManager->getDirectors($id);
+        $director = $filmManager->getDirector($id);
         $genres = $filmManager->getGenres($id);
         require "View/Film/filmDetails.php";
     }

@@ -1,11 +1,12 @@
 <?php ob_start(); ?>
 
-<div class="container">
+<div class="details container">
+
     <section class="film-info flex-column">
-        <h3 class="film-info_genres">
+        <h3 class="film-info_genres flex-row">
             <?php
                 foreach($genres as $genre){
-                    echo $genre['genre_name'].' ';
+                    echo "<p>".$genre['genre_name']."</p>";
                 }
             ?>
         </h3>
@@ -14,39 +15,38 @@
     
         <div class="film-info_data flex-row">
             <p><?= $film['duration'] ?></p>
-            <strong><?= $film['rating'] ?></strong>
-            <p><?= $film['release_date'] ?></p>
+            <strong class="main-color"><?= $film['rating'] ?></strong>
+            <p><?= substr($film['release_date'],0 ,4) ?></p>
         </div>
     
         <p class="film-info_synopsis"><?= $film['synopsis'] ?></p>
     </section>
     
     <section class="film-staff flex-row">
+
         <article class="film-staff_directors">
-            <p>Directed by</p>
+            <p class="film-staff_title">Directed by</p>
             <div class="director_cards flex-row">
-                <?php
-                    foreach($directors as $director){ ?>
-                            <div class='director_card'>
-                                <img
-                                    class='director_img'
-                                    src='https://picsum.photos/90/112'
-                                    alt='<?= $director['first_name'] ?> <?= $director['last_name'] ?>' />
-                                <p class="director_card_name">
-                                    <?= $director['first_name'] ?>
-                                    <br>
-                                    <?= $director['last_name'] ?>
-                                </p>
-                            </div>
-                    <?php } ?>
+                <div class='film-staff_card'>
+                    <img
+                        class='director_img'
+                        src='https://picsum.photos/90/112'
+                        alt='<?= $director['first_name'] ?> <?= $director['last_name'] ?>' />
+                    <p class="director_card_name">
+                        <?= $director['first_name'] ?>
+                        <br>
+                        <?= $director['last_name'] ?>
+                    </p>
+                </div>
             </div>
         </article>
+
         <article class="film-staff_castings">
-            <p>Casting</p>
+            <p class="film-staff_title">Casting</p>
             <div class="casting_cards flex-row">
                 <?php
                     foreach($castings as $casting){ ?>
-                            <div class='casting_card'>
+                            <div class='film-staff_card'>
                                 <img
                                     class='casting_img'
                                     src='https://picsum.photos/90/112'

@@ -69,7 +69,7 @@ class FilmManager {
     }
 
     // Get list of directors for a specific film
-    public function getDirectors($id){
+    public function getDirector($id){
         $pdo = Connect::seConnecter();
         $request = $pdo->prepare("
             SELECT 
@@ -81,8 +81,8 @@ class FilmManager {
             WHERE f.id_film = :id;
         ");
         $request->execute(["id" => $id]);
-        $directors = $request->fetchAll();
-        return $directors;
+        $director = $request->fetch();
+        return $director;
     }
 
     // Get casting information for a specific film
@@ -118,5 +118,23 @@ class FilmManager {
         $request->execute(["id" => $id]);
         $genres = $request->fetchAll();
         return $genres;
+    }
+
+    // Get all movies poster from a director
+    public function getFilmsDirector($specifiedDirector){
+        $pdo = Connect::seConnecter();
+        $request = $pdo->prepare("
+            SELECT
+                f.poster,
+                CONCAT(p.first_name, ' ', p.last_name) AS director,
+                p.id_person
+            FROM film f
+            INNER JOIN director d ON f.id_director = d.id_director
+            INNER JOIN person p ON d.id_person = p.id_person
+            WHERE p.last_name = :director;
+        ");
+        $request->execute(["director" => $specifiedDirector]);
+        $filmsDirector = $request->fetchAll();
+        return $filmsDirector;
     }
 }

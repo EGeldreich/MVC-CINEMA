@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="./Public/css/forms.css">
     <link rel="stylesheet" href="./Public/css/lists.css">
     <link rel="stylesheet" href="./Public/css/home.css">
+    <link rel="stylesheet" href="./Public/css/details.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,7 +20,7 @@
     <title><?= $title ?></title>
 </head>
 <body>
-    <header class="container">
+    <header>
             <nav class="navbar flex-row raleway">
                 <div class="navbar_left flex-row">
                     <a href="index.php" class="logo oswald">The Movie <span class="main-color">Hub</span></a>
@@ -41,5 +42,44 @@
     <main class="raleway">
         <?= $content ?>
     </main>
+    <footer class="footer flex-row raleway">
+        <div class="footer_column flex-column">
+            <p class="column_title">Category</p>
+            <ul class="column_links flex-column">
+                <li><a href="">Super link</a></li>
+                <li><a href="">Super link</a></li>
+                <li><a href="">Super link</a></li>
+            </ul>
+        </div>
+
+        <div class="footer_column flex-column">
+            <p class="column_title">Category</p>
+            <ul class="column_links flex-column">
+                <li><a href="">Super link</a></li>
+                <li><a href="">Super link</a></li>
+                <li><a href="">Super link</a></li>
+            </ul>
+        </div>
+
+        <div class="footer_column flex-column">
+            <p class="column_title">Category</p>
+            <ul class="column_links flex-column">
+                <li><a href="">Super link</a></li>
+                <li><a href="">Super link</a></li>
+                <li><a href="">Super link</a></li>
+            </ul>
+        </div>
+
+        <div class="footer_column footer_column__bot flex-column">
+            <small>Small caption &copy;</small>
+            <small>The Movie Hub &copy;</small>
+        </div>
+
+        <div class="footer_column footer_column__bot flex-column">
+        <a href="index.php" class="logo oswald">The Movie <span class="main-color">Hub</span></a>
+        </div>
+
+
+    </footer>
 </body>
 </html>

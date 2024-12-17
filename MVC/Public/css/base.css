@@ -5,6 +5,7 @@
     padding: 0;
     box-sizing: border-box;
     text-decoration: none;
+    list-style-type: none;
 }
 button {
     border: none;
@@ -38,6 +39,9 @@ html {
     background-color: var(--dark-color);
     font-size: 16px;
 }
+main {
+    padding-top: 3rem;
+}
 /* UTILITES */
 .container {
     width: calc(100% - (3rem * 2));
@@ -65,26 +69,65 @@ html {
 /* HEADER */
 header {
     height: 48px;
-    width: 100;
+    width: 100%;
     background-color: var(--dark-color);
+    position: fixed;
+    z-index: 5;
+    padding: 0 3rem;
 
     & .navbar {
         justify-content: space-between;
         align-items: center;
+        padding-top: 6px;
+
         & .navbar_left {
             gap: 72px;
+
             & .logo {
                 font-size: 1.5rem;
                 align-items: center;
             }
+
             & .navbar_left_main {
                 gap: 40px;
                 align-items: center;
             }
         }
+
         & .navbar_right {
             gap: 24px;
             align-items: center;
+        }
+    }
+}
+
+/* FOOTER */
+.footer {
+    border-top: 1px solid var(--light-color);
+    justify-content: space-around;
+    width: 100%;
+    margin-top: 3rem;
+    padding: 3rem 0;
+    & .footer_column {
+        gap: 1rem;
+
+        & .column_title {
+            font-size: 1.1rem;
+            font-weight: 500;
+        }
+
+        & .column_links {
+            padding-left: 0.5rem;
+            gap: 0.5rem;
+        }
+
+        &.footer_column__bot {
+            justify-content: end;
+            gap: 0;
+        }
+
+        & .logo {
+            font-size: 3rem;
         }
     }
 }

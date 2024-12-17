@@ -340,6 +340,7 @@ CREATE TABLE IF NOT EXISTS `person` (
   `first_name` varchar(50) NOT NULL,
   `sex` varchar(50) NOT NULL,
   `birth_date` date NOT NULL,
+  `picture` varchar(255) NOT NULL,
   PRIMARY KEY (`id_person`)
 ) ENGINE=InnoDB AUTO_INCREMENT=60 DEFAULT CHARSET=latin1;
 

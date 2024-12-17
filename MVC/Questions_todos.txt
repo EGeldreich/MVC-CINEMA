@@ -13,3 +13,7 @@ ERROR PAGE
 
 Ajouter img a genre et characters
 changer les formulaires qui leur sont lié
+
+HOME PAGE
+MOVIE DETAIL PAGE
+

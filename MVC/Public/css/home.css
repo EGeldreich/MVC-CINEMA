@@ -1,6 +1,6 @@
 /* HERO -------------------------------- */
 
-.hero {
+.home_hero {
     width: 100%;
     height: 48rem;
     background: url(https://substackcdn.com/image/fetch/f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fbucketeer-e05bbc84-baa3-437e-9518-adb32be77984.s3.amazonaws.com%2Fpublic%2Fimages%2Fbadedfd1-5c8b-4ed5-94ea-11aa80e49fbb_1920x808.jpeg)
@@ -14,7 +14,7 @@
     align-items: center;
     position: relative;
 
-    & .hero_filter {
+    & .home_hero_filter {
         position: absolute;
         top: 0;
         left: 0;
@@ -30,7 +30,7 @@
         z-index: 0;
     }
 
-    & .hero_text-content {
+    & .home_hero_text-content {
         gap: 1.5rem;
         z-index: 2;
 
@@ -77,30 +77,41 @@
     font-size: 2rem;
     margin-bottom: 1rem;
 }
-/* GENRE SECTION __________________________________________________ */
+/* CARDS SECTION __________________________________________________ */
 .card-section {
-    position: absolute;
-    top: -12.5rem;
-    z-index: 3;
     overflow: hidden;
+    margin-bottom: 1.5rem;
 
-    & .genre_cards {
+    &.home_genres {
+        margin-top: -12rem;
+    }
+
+    & .home_cards {
         gap: 1.5rem;
+        transition: transform 0.5s ease;
 
-        & .genre-card {
-            width: 20rem;
-            height: 20rem;
+        & .home-card {
             border-radius: 10px;
             overflow: hidden;
             position: relative;
+            flex-shrink: 0;
+            width: 20rem;
 
-            & .genre-card_img {
+            &.home-card__square {
+                height: 20rem;
+            }
+
+            &.home-card__rectangle {
+                height: 27rem;
+            }
+
+            & .home-card_img {
                 width: 100%;
                 height: 100%;
                 object-fit: cover;
             }
 
-            & .genre-card_filter {
+            & .home-card_filter {
                 position: absolute;
                 top: 0;
                 left: 0;
@@ -108,23 +119,101 @@
                 height: 100%;
                 background: linear-gradient(
                     to bottom,
-                    rgba(0, 0, 0, 0.5) 0%,
-                    rgba(0, 0, 0, 0.3) 25%,
-                    rgba(0, 0, 0, 0) 50%
+                    rgba(0, 0, 0, 0.8) 0%,
+                    rgba(0, 0, 0, 0.4) 15%,
+                    rgba(0, 0, 0, 0) 30%
                 );
                 pointer-events: none;
+
+                &.home-card_filter__bottom {
+                    background: linear-gradient(
+                        to top,
+                        rgba(0, 0, 0, 0.8) 0%,
+                        rgba(0, 0, 0, 0.4) 15%,
+                        rgba(0, 0, 0, 0) 30%
+                    );
+                }
             }
 
-            & .genre-card_name {
+            & .home-card_info {
                 position: absolute;
-                top: 0.5rem;
-                left: 1rem;
                 font-size: 1.5em;
+                font-weight: 500;
 
-                &::first-letter {
+                &.home-card_name {
+                    top: 0.5rem;
+                    left: 1rem;
+
+                    &::first-letter {
+                        color: var(--main-color);
+                    }
+                }
+
+                &.home-card_director {
+                    bottom: 0.5rem;
+                    left: 1rem;
+                    font-size: 1em;
+
+                    &::first-letter {
+                        color: var(--main-color);
+                    }
+                }
+                &.home-card_rating {
+                    bottom: 0.5rem;
+                    right: 1rem;
                     color: var(--main-color);
                 }
             }
+        }
+    }
+}
+/* PUSH SECTION ____________________________________________________ */
+.home_push {
+    width: 100%;
+    border-radius: 10px;
+    padding-left: 7rem;
+    background-color: var(--grey-color);
+
+    & .home_push_content {
+        align-items: center;
+        width: 100%;
+        gap: 3rem;
+    }
+    & .home_push_text {
+        width: 33%;
+        gap: 2rem;
+
+        & .home_push_btn {
+            width: 8rem;
+            height: 3rem;
+            border-radius: 3rem;
+            line-height: 3rem;
+            background-color: var(--main-color);
+            color: var(--dark-color);
+            font-weight: 700;
+            text-align: center;
+        }
+    }
+
+    & .home_push_posters {
+        overflow: hidden;
+        max-width: 66%;
+        margin-left: auto;
+        justify-content: end;
+        position: relative;
+
+        & .home_push_filter {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                to right,
+                rgb(32, 32, 32, 1) 0%,
+                rgba(32, 32, 32, 0) 25%
+            );
+            pointer-events: none;
         }
     }
 }

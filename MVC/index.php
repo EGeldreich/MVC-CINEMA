@@ -22,6 +22,7 @@ $ctrlContentAdd = new ContentAddController();
 $ctrlContentEdit = new ContentEditController();
 
 $id = (isset($_GET["id"])) ? $_GET["id"] : NULL;
+$specifiedDirector = 'Nolan';
 
 if(isset($_GET["action"])){
     switch ($_GET["action"]) {
@@ -48,5 +49,5 @@ if(isset($_GET["action"])){
         case "EditCasting" : $ctrlContentEdit->editCasting($id); break;
     };
 } else {
-    $ctrlCinema->home();
+    $ctrlCinema->home($specifiedDirector);
 };
