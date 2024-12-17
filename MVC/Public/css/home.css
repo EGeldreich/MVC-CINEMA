@@ -179,6 +179,7 @@
         width: 100%;
         gap: 3rem;
     }
+
     & .home_push_text {
         width: 33%;
         gap: 2rem;
@@ -219,85 +220,22 @@
 }
 
 @media (max-width: 1200px) {
-    /* HERO -------------------------------- */
-
+    /* HERO __________ */
     .home_hero {
-        & .home_hero_filter {
-        }
-
         & .home_hero_text-content {
             & h1 {
                 font-size: 48px;
             }
-
-            & p {
-            }
-        }
-
-        & .search-form {
-            & input {
-            }
-            & .input-icon {
-            }
         }
     }
-    /* ALL SECTIONS ___________________________________________________*/
-    .separator {
-    }
-    .section-title {
-    }
-    /* CARDS SECTION __________________________________________________ */
-    .card-section {
-        &.home_genres {
-        }
 
-        & .home_cards {
-            & .home-card {
-                &.home-card__square {
-                }
-
-                &.home-card__rectangle {
-                }
-
-                & .home-card_img {
-                }
-
-                & .home-card_filter {
-                    &.home-card_filter__bottom {
-                    }
-                }
-
-                & .home-card_info {
-                    &.home-card_name {
-                        &::first-letter {
-                        }
-                    }
-
-                    &.home-card_director {
-                        &::first-letter {
-                        }
-                    }
-                    &.home-card_rating {
-                    }
-                }
-            }
-        }
-    }
-    /* PUSH SECTION ____________________________________________________ */
+    /* PUSH SECTION ________ */
     .home_push {
-        & .home_push_content {
-        }
         & .home_push_text {
             width: 100%;
-            }
-            & .home_push_btn {
-            }
         }
-
-        & .home_push_posters {
-            max-width: 50%;
-            & .home_push_filter {
-            }
-        }
+    }
+    & .home_push_posters {
+        max-width: 50%;
     }
 }
