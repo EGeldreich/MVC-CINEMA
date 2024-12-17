@@ -32,7 +32,7 @@
                         class='director_img'
                         src='https://picsum.photos/90/112'
                         alt='<?= $director['first_name'] ?> <?= $director['last_name'] ?>' />
-                    <p class="director_card_name">
+                    <p class="film-staff_card_name">
                         <?= $director['first_name'] ?>
                         <br>
                         <?= $director['last_name'] ?>
@@ -51,10 +51,11 @@
                                     class='casting_img'
                                     src='https://picsum.photos/90/112'
                                     alt='<?= $casting['first_name'] ?> <?= $casting['last_name'] ?>' />
+                                
                                 <p class="casting_card_role">
-                                <?= $casting['character_name'] ?>
+                                    <?= $casting['character_name'] ?>
                                 </p>
-                                <p class="casting_card_name">
+                                <p class="film-staff_card_name">
                                     <?= $casting['first_name'] ?>
                                     <br>
                                     <?= $casting['last_name'] ?>

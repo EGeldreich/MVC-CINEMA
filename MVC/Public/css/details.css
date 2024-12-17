@@ -45,11 +45,28 @@
             font-size: 1.2em;
             margin-bottom: 1rem;
         }
-
+        & .casting_cards {
+            gap: 1rem;
+        }
         & .film-staff_card {
             width: 8rem;
             height: 12rem;
             border-radius: 10px;
+            position: relative;
+
+            & img {
+                width: 100%;
+                object-fit: cover;
+                border-radius: 10px;
+            }
+            & .casting_card_role {
+                position: absolute;
+                bottom: 1rem;
+                text-align: center;
+            }
+            & .film-staff_card_name {
+                text-align: center;
+            }
         }
     }
 }
