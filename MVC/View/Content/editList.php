@@ -56,7 +56,7 @@
      </div>
     
      <!-- GENRES -->
-     <div class="genre-form genre-edit_container forms">
+     <div class="genre-form genre-edit_container forms hidden">
         <ol class="edit-genre_list edit-form flex-column">
             <?php foreach($genres as $genre){ ?>
                 <li class="form genre-entry flex-column">

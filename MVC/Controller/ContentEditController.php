@@ -76,5 +76,13 @@ class ContentEditController {
                 exit();
             }
         }
+        if(isset($_POST['delPerson'])){
+
+            $editManager = new EditManager();
+            $idperson = $editManager->delPerson($id);
+
+            header('location: index.php?action=EditList');
+                exit();
+        }
     }
 }

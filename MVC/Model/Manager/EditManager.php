@@ -39,4 +39,17 @@ class EditManager {
     
         return $person['id'];
     }
+
+    public function delPerson($id){
+        $pdo = Connect::seConnecter();
+        // Delete existing roles
+        // Done by cascading ?
+        // Delete existing person (That's not murder I swear)
+        $request = $pdo->prepare("
+            DELETE FROM person
+            WHERE id_person = :id_person;
+        ");
+        $request->execute(["id_person" => $id]);
+    
+    }
 }
