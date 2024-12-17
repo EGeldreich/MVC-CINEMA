@@ -25,40 +25,36 @@
     <section class="film-staff flex-row">
 
         <article class="film-staff_directors">
-            <p class="film-staff_title">Directed by</p>
+            <p class="film-staff_title main-color">Directed by</p>
             <div class="director_cards flex-row">
-                <div class='film-staff_card'>
+                <div class='film-staff_card flex-column'>
+                    <p class="film-staff_card_name">
+                        <?= $director['first_name'] ?>
+                        <?= $director['last_name'] ?>
+                    </p>
                     <img
                         class='director_img'
                         src='https://picsum.photos/90/112'
                         alt='<?= $director['first_name'] ?> <?= $director['last_name'] ?>' />
-                    <p class="film-staff_card_name">
-                        <?= $director['first_name'] ?>
-                        <br>
-                        <?= $director['last_name'] ?>
-                    </p>
                 </div>
             </div>
         </article>
 
         <article class="film-staff_castings">
-            <p class="film-staff_title">Casting</p>
+            <p class="film-staff_title main-color">Casting</p>
             <div class="casting_cards flex-row">
                 <?php
                     foreach($castings as $casting){ ?>
-                            <div class='film-staff_card'>
-                                <img
-                                    class='casting_img'
-                                    src='https://picsum.photos/90/112'
-                                    alt='<?= $casting['first_name'] ?> <?= $casting['last_name'] ?>' />
-                                
-                                <p class="casting_card_role">
-                                    <?= $casting['character_name'] ?>
-                                </p>
+                            <div class='film-staff_card flex-column'>
                                 <p class="film-staff_card_name">
                                     <?= $casting['first_name'] ?>
-                                    <br>
                                     <?= $casting['last_name'] ?>
+                                </p>
+                                <img
+                                src='https://picsum.photos/90/112'
+                                alt='<?= $casting['first_name'] ?> <?= $casting['last_name'] ?>' />
+                                <p class="casting-card_role">
+                                    <?= $casting['character_name'] ?>
                                 </p>
                             </div>
                     <?php } ?>

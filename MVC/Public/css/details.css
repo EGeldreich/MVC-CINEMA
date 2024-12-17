@@ -5,35 +5,35 @@
 
     & .film-info {
         width: 100%;
-        height: 23rem;
+        height: 30rem;
         padding: 3rem 5rem;
         background-color: var(--grey-color);
         border-radius: 10px;
-        gap: 0.7rem;
+        gap: 3rem;
         margin-bottom: 3rem;
 
         & .film-info_genres {
-            gap: 1rem;
+            gap: 1.5rem;
             align-self: end;
             top: 2rem;
             right: 4rem;
             font-weight: 200;
-            font-size: 1.5rem;
+            font-size: 24px;
         }
 
         & .film-info_title {
-            font-size: 3.5em;
+            font-size: 56px;
             font-weight: 700;
         }
 
         & .film-info_data {
-            font-size: 1.5em;
+            font-size: 24px;
             font-weight: 200;
             gap: 2rem;
         }
 
         & .film-info_synopsis {
-            font-size: 1.3em;
+            font-size: 20px;
             font-weight: 300;
         }
     }
@@ -42,28 +42,29 @@
         justify-content: space-evenly;
 
         & .film-staff_title {
-            font-size: 1.2em;
+            font-size: 20px;
             margin-bottom: 1rem;
+            font-weight: 600;
         }
         & .casting_cards {
             gap: 1rem;
         }
         & .film-staff_card {
-            width: 8rem;
-            height: 12rem;
+            width: 10rem;
+            height: 16rem;
             border-radius: 10px;
-            position: relative;
+            gap: 1rem;
+
+            & .casting-card_role {
+                text-align: center;
+            }
 
             & img {
                 width: 100%;
                 object-fit: cover;
                 border-radius: 10px;
             }
-            & .casting_card_role {
-                position: absolute;
-                bottom: 1rem;
-                text-align: center;
-            }
+
             & .film-staff_card_name {
                 text-align: center;
             }

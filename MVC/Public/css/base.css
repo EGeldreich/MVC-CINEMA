@@ -32,6 +32,7 @@ a {
     --grey-color: #202020;
     --main-color: #28bd8a;
     --red-color: #bd3528;
+    --header-height: 48px;
 }
 /* GENERAL */
 html {
@@ -40,11 +41,13 @@ html {
     font-size: 16px;
 }
 main {
-    padding-top: 3rem;
+    --side-padding: 3rem;
+    padding-top: var(--header-height);
+    font-size: 16px;
 }
 /* UTILITES */
 .container {
-    width: calc(100% - (3rem * 2));
+    width: calc(100% - (var(--side-padding) * 2));
     margin: 0 auto;
 }
 .flex-row {
@@ -68,7 +71,7 @@ main {
 }
 /* HEADER */
 header {
-    height: 48px;
+    height: var(--header-height);
     width: 100%;
     background-color: var(--dark-color);
     position: fixed;
@@ -79,12 +82,13 @@ header {
         justify-content: space-between;
         align-items: center;
         padding-top: 6px;
+        font-size: 16px;
 
         & .navbar_left {
             gap: 72px;
 
             & .logo {
-                font-size: 1.5rem;
+                font-size: 24px;
                 align-items: center;
             }
 
@@ -112,7 +116,7 @@ header {
         gap: 1rem;
 
         & .column_title {
-            font-size: 1.1rem;
+            font-size: 18px;
             font-weight: 500;
         }
 
@@ -127,7 +131,13 @@ header {
         }
 
         & .logo {
-            font-size: 3rem;
+            font-size: 48px;
         }
+    }
+}
+
+@media (max-width: 1200px) {
+    html {
+        font-size: 14px;
     }
 }

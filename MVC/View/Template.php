@@ -21,23 +21,22 @@
 </head>
 <body>
     <header>
-            <nav class="navbar flex-row raleway">
-                <div class="navbar_left flex-row">
-                    <a href="index.php" class="logo oswald">The Movie <span class="main-color">Hub</span></a>
-                    <div class="navbar_left_main flex-row">
-                        <a href="index.php?action=FilmList">Movies</a>
-                        <a href="index.php?action=GenreList">Genres</a>
-                        <a href="index.php?action=ActorList">Actors</a>
-                        <a href="index.php?action=DirectorList">Directors</a>
-                        <a href="index.php?action=CharacterList">Characters</a>
-                    </div>
+        <nav class="navbar flex-row raleway">
+            <div class="navbar_left flex-row">
+                <a href="index.php" class="logo oswald">The Movie <span class="main-color">Hub</span></a>
+                <div class="navbar_left_main flex-row">
+                    <a href="index.php?action=FilmList">Movies</a>
+                    <a href="index.php?action=GenreList">Genres</a>
+                    <a href="index.php?action=ActorList">Actors</a>
+                    <a href="index.php?action=DirectorList">Directors</a>
+                    <a href="index.php?action=CharacterList">Characters</a>
                 </div>
-                <div class="navbar_right flex-row">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                    <a href="index.php?action=FormList">Add content</a>
-                    <a href="index.php?action=EditList">Edit content</a>
-                </div>
-            </nav>
+            </div>
+            <div class="navbar_right flex-row">
+                <a href="index.php?action=FormList">Add content</a>
+                <a href="index.php?action=EditList">Edit content</a>
+            </div>
+        </nav>
     </header>
     <main class="raleway">
         <?= $content ?>

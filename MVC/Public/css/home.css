@@ -1,7 +1,7 @@
 /* HERO -------------------------------- */
 
 .home_hero {
-    width: 100%;
+    width: 100vw;
     height: 48rem;
     background: url(https://substackcdn.com/image/fetch/f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fbucketeer-e05bbc84-baa3-437e-9518-adb32be77984.s3.amazonaws.com%2Fpublic%2Fimages%2Fbadedfd1-5c8b-4ed5-94ea-11aa80e49fbb_1920x808.jpeg)
         no-repeat center center fixed;
@@ -9,7 +9,7 @@
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-    padding: 12.5rem 18rem;
+    padding: 12.5rem;
     gap: 3rem;
     align-items: center;
     position: relative;
@@ -31,17 +31,18 @@
     }
 
     & .home_hero_text-content {
+        width: 100%;
         gap: 1.5rem;
         z-index: 2;
 
         & h1 {
-            font-size: 3.2em;
+            font-size: 56px;
             line-height: 100%;
             text-align: center;
         }
 
         & p {
-            font-size: 1.25em;
+            font-size: 20px;
             font-weight: 300;
             text-align: center;
         }
@@ -74,7 +75,7 @@
     position: relative;
 }
 .section-title {
-    font-size: 2rem;
+    font-size: 32px;
     margin-bottom: 1rem;
 }
 /* CARDS SECTION __________________________________________________ */
@@ -123,7 +124,6 @@
                     rgba(0, 0, 0, 0.4) 15%,
                     rgba(0, 0, 0, 0) 30%
                 );
-                pointer-events: none;
 
                 &.home-card_filter__bottom {
                     background: linear-gradient(
@@ -137,7 +137,7 @@
 
             & .home-card_info {
                 position: absolute;
-                font-size: 1.5em;
+                font-size: 24px;
                 font-weight: 500;
 
                 &.home-card_name {
@@ -152,7 +152,7 @@
                 &.home-card_director {
                     bottom: 0.5rem;
                     left: 1rem;
-                    font-size: 1em;
+                    font-size: 16px;
 
                     &::first-letter {
                         color: var(--main-color);
@@ -214,6 +214,90 @@
                 rgba(32, 32, 32, 0) 25%
             );
             pointer-events: none;
+        }
+    }
+}
+
+@media (max-width: 1200px) {
+    /* HERO -------------------------------- */
+
+    .home_hero {
+        & .home_hero_filter {
+        }
+
+        & .home_hero_text-content {
+            & h1 {
+                font-size: 48px;
+            }
+
+            & p {
+            }
+        }
+
+        & .search-form {
+            & input {
+            }
+            & .input-icon {
+            }
+        }
+    }
+    /* ALL SECTIONS ___________________________________________________*/
+    .separator {
+    }
+    .section-title {
+    }
+    /* CARDS SECTION __________________________________________________ */
+    .card-section {
+        &.home_genres {
+        }
+
+        & .home_cards {
+            & .home-card {
+                &.home-card__square {
+                }
+
+                &.home-card__rectangle {
+                }
+
+                & .home-card_img {
+                }
+
+                & .home-card_filter {
+                    &.home-card_filter__bottom {
+                    }
+                }
+
+                & .home-card_info {
+                    &.home-card_name {
+                        &::first-letter {
+                        }
+                    }
+
+                    &.home-card_director {
+                        &::first-letter {
+                        }
+                    }
+                    &.home-card_rating {
+                    }
+                }
+            }
+        }
+    }
+    /* PUSH SECTION ____________________________________________________ */
+    .home_push {
+        & .home_push_content {
+        }
+        & .home_push_text {
+            width: 100%;
+            }
+            & .home_push_btn {
+            }
+        }
+
+        & .home_push_posters {
+            max-width: 50%;
+            & .home_push_filter {
+            }
         }
     }
 }
